@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
@@ -38,9 +39,12 @@ public class Credentials extends AppCompatActivity {
         ParseUser.logInInBackground(usernameEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
+
                     Log.e("Did you log in?", "YES");
                 } else {
                     // Signup failed. Look at the ParseException to see what happened.
+                    Toast toast = Toast.makeText(getApplicationContext(), "Failed to Log In, Try again!", Toast.LENGTH_SHORT);
+                    toast.show();
                     Log.e("Did you log in?", "NEGATIVE");
                 }
             }
