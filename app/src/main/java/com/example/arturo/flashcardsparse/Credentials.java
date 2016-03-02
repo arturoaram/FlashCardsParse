@@ -1,5 +1,6 @@
 package com.example.arturo.flashcardsparse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.parse.ParseUser;
 public class Credentials extends AppCompatActivity {
 
     EditText usernameEditText;
+
     EditText passwordEditText;
     Button  signInButton;
 
@@ -46,11 +48,21 @@ public class Credentials extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(), "Failed to Log In, Try again!", Toast.LENGTH_SHORT);
                     toast.show();
                     Log.e("Did you log in?", "NEGATIVE");
+
+                    passwordEditText.getText().clear();
+
+
+
                 }
             }
         });
     }
 
+public void registerMe(View view){
+
+    Intent intent = new Intent(this,RegisterCredentials.class);
+    startActivity(intent);
+}
 
 
 }
