@@ -9,18 +9,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".AppParse">
         <meta-data
             android:name="com.parse.APPLICATION_ID"
             android:value="l267bi83DE38uur76wC7rqZwRDFUQDhKVgJXu7P7" />
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="hnvfX09IXjyA3i6QOTFJHhjkxxwaUbyAZzVeYREA" />
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+
         <activity android:name=".Credentials"
                   android:label="@string/app_name" >
         <intent-filter>

@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -22,18 +20,17 @@ public class Credentials extends AppCompatActivity {
     EditText usernameEditText;
 
     EditText passwordEditText;
-    Button  signInButton;
+    //Button  signInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.credentials);
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this);
 
-        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
-        passwordEditText = (EditText) findViewById(R.id.passwordEditText);
-        signInButton = (Button) findViewById(R.id.signInButton);
+
+        usernameEditText = (EditText) findViewById(R.id.credentialsUsernameEditText);
+        passwordEditText = (EditText) findViewById(R.id.credentialsPasswordEditText);
+        //signInButton = (Button) findViewById(R.id.credentialsSignInButton);
     }
 
     public void logInButton(View view){
@@ -47,22 +44,33 @@ public class Credentials extends AppCompatActivity {
                     // Signup failed. Look at the ParseException to see what happened.
                     Toast toast = Toast.makeText(getApplicationContext(), "Failed to Log In, Try again!", Toast.LENGTH_SHORT);
                     toast.show();
-                    Log.e("Did you log in?", "NEGATIVE");
+                    //Log.e("Did you log in?", "NEGATIVE");
 
                     passwordEditText.getText().clear();
-
-
-
                 }
             }
         });
     }
 //test
 public void registerMe(View view){
-
+    //Parse.
     Intent intent = new Intent(this,RegisterCredentials.class);
     startActivity(intent);
 }
 
+    //        ParseQuery<ParseObject> query = ParseQuery.getQuery("TestObject");
+//        query.whereEqualTo("foo", "Arturo");
+//        query.findInBackground(new FindCallback<ParseObject>() {
+//            public void done(List<ParseObject> scoreList, ParseException e) {
+//                if (e == null) {
+//                    for (int i = 0; i < scoreList.size(); i++)
+//                        Log.e("Number that Arturo cont", "Here are the numbers of Arturo " +
+//                                scoreList.get(i).get("Numbers").toString());
+//                    Log.e("score", "Retrieved " + scoreList.size() + " Numbers of Arturo");
+//                } else {
+//                    Log.e("score", "Error: " + e.getMessage());
+//                }
+//            }
+//        });
 
 }
