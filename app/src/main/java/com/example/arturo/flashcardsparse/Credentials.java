@@ -57,7 +57,7 @@ public class Credentials extends AppCompatActivity {
             }
         });
     }
-
+//test
 public void registerMe(View view){
 
     Intent intent = new Intent(this,RegisterCredentials.class);

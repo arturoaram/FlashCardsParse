@@ -24,7 +24,7 @@ public class RegisterCredentials extends AppCompatActivity {
         //
         // Parse.initialize(this);
         cancelButton = (Button) findViewById(R.id.cancelBtn);
-
+//test comment
     }
     public void registerButton(){
         //intent possibly
