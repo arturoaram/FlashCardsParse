@@ -3,7 +3,6 @@ package com.example.arturo.flashcardsparse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -54,8 +53,10 @@ public class Credentials extends AppCompatActivity {
             ParseUser.logInInBackground(usernameEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
                 public void done(ParseUser user, ParseException e) {
                     if (user != null) {
-
-                        Log.e("Did you log in?", "YES");
+                        Intent intent = new Intent(getApplicationContext(),UserMenu.class);
+                        intent.putExtra("USERNAME",usernameEditText.getText().toString());
+                        intent.putExtra("PASSWORD",passwordEditText.getText().toString());
+                        startActivity(intent);
 
                     } else {
                         // Signup failed. Look at the ParseException to see what happened.
@@ -74,6 +75,7 @@ public class Credentials extends AppCompatActivity {
     public void registerMe(View view) {
         //Parse.
         Intent intent = new Intent(this, RegisterCredentials.class);
+
         startActivity(intent);
     }
 
