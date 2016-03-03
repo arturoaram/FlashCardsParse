@@ -42,7 +42,7 @@ public class RegisterCredentials extends Activity {
 
                 Boolean checkForToast = false;
 
-                if (nameText.getText().toString().equalsIgnoreCase("")) {
+                if (isEmpty(nameText)) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please input your Name!", Toast.LENGTH_SHORT);
                     toast.show();
                     checkForToast = true;
@@ -146,6 +146,14 @@ public class RegisterCredentials extends Activity {
     public void cancelButton(View view) {
 
         finish();
+    }
+
+    private boolean isEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 

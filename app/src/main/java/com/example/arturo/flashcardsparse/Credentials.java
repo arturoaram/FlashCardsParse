@@ -35,31 +35,55 @@ public class Credentials extends AppCompatActivity {
 
     public void logInButton(View view) throws ParseException {
 
-        ParseUser user = new ParseUser();
-        user.logIn(usernameEditText.getText().toString(),passwordEditText.getText().toString());
+        Boolean check = true;
 
-        ParseUser.logInInBackground(usernameEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
-            public void done(ParseUser user, ParseException e) {
-                if (user != null) {
+        if (isEmpty(usernameEditText) ){
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Username Field is empty", Toast.LENGTH_SHORT);
+            toast.show();
+            check = false;
+        }
+        else if ( isEmpty(passwordEditText) ){
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Password Field is empty", Toast.LENGTH_SHORT);
+            toast.show();
+            check = false;
+        }
 
-                    Log.e("Did you log in?", "YES");
-                } else {
-                    // Signup failed. Look at the ParseException to see what happened.
-                    Toast toast = Toast.makeText(getApplicationContext(), "Failed to Log In, Try again!", Toast.LENGTH_SHORT);
-                    toast.show();
-                    //Log.e("Did you log in?", "NEGATIVE");
+        if(check){
+            ParseUser.logInInBackground(usernameEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
+                public void done(ParseUser user, ParseException e) {
+                    if (user != null) {
 
-                    passwordEditText.getText().clear();
+                        Log.e("Did you log in?", "YES");
+
+                    } else {
+                        // Signup failed. Look at the ParseException to see what happened.
+                        Toast toast = Toast.makeText(getApplicationContext(), "Failed to Log In, Try again!", Toast.LENGTH_SHORT);
+                        toast.show();
+                        //Log.e("Did you log in?", "NEGATIVE");
+
+                        passwordEditText.getText().clear();
+                    }
                 }
-            }
-        });
+            });
     }
-//test
-public void registerMe(View view){
-    //Parse.
-    Intent intent = new Intent(this,RegisterCredentials.class);
-    startActivity(intent);
-}
+    }
+
+    //test
+    public void registerMe(View view) {
+        //Parse.
+        Intent intent = new Intent(this, RegisterCredentials.class);
+        startActivity(intent);
+    }
+
+    private boolean isEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     //        ParseQuery<ParseObject> query = ParseQuery.getQuery("TestObject");
 //        query.whereEqualTo("foo", "Arturo");
@@ -75,5 +99,4 @@ public void registerMe(View view){
 //                }
 //            }
 //        });
-
 }
