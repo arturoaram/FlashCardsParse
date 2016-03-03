@@ -33,7 +33,10 @@ public class Credentials extends AppCompatActivity {
         //signInButton = (Button) findViewById(R.id.credentialsSignInButton);
     }
 
-    public void logInButton(View view){
+    public void logInButton(View view) throws ParseException {
+
+        ParseUser user = new ParseUser();
+        user.logIn(usernameEditText.getText().toString(),passwordEditText.getText().toString());
 
         ParseUser.logInInBackground(usernameEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
             public void done(ParseUser user, ParseException e) {

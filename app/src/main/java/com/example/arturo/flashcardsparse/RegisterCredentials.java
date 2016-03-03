@@ -3,7 +3,6 @@ package com.example.arturo.flashcardsparse;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +27,7 @@ public class RegisterCredentials extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_cred);
+        //Parse.enableLocalDatastore(this);
         //Parse.initialize(this);
         //cancelButton = (Button) findViewById(R.id);
         nameText = (EditText) findViewById(R.id.registerNameEditText);
@@ -40,21 +40,33 @@ public class RegisterCredentials extends Activity {
             @Override
             public void onClick(View view) {
 
-                if(nameText.getText().toString().equalsIgnoreCase("")){
+                Boolean checkForToast = false;
+
+                if (nameText.getText().toString().equalsIgnoreCase("")) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please input your Name!", Toast.LENGTH_SHORT);
                     toast.show();
-                }
-                if(emailText.getText().toString().equalsIgnoreCase("")){
+                    checkForToast = true;
+
+                } else if (emailText.getText().toString().equalsIgnoreCase("")) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please input your Email Address!", Toast.LENGTH_SHORT);
                     toast.show();
-                }
-                if(usernameText.getText().toString().equalsIgnoreCase("")){
+                    checkForToast = true;
+                } else if (!emailText.getText().toString().contains("@") &&
+                        !emailText.getText().toString().contains(".com")) {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "This is not a valid Email Address",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                    checkForToast = true;
+                } else if (usernameText.getText().toString().equalsIgnoreCase("")) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please input your Username!", Toast.LENGTH_SHORT);
                     toast.show();
-                }
-                if(passwordText.getText().toString().equalsIgnoreCase("")){
+                    checkForToast = true;
+
+                } else if (passwordText.getText().toString().equalsIgnoreCase("")) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please input your Password", Toast.LENGTH_SHORT);
                     toast.show();
+                    checkForToast = true;
                 }
 
                 //dialog
@@ -63,21 +75,52 @@ public class RegisterCredentials extends Activity {
                 dlg.setMessage("Signing UP!!!");
                 dlg.show();
 
+                //Checking if Username and Email are not duplicates
+
+
+
+//                if (checkForToast == false) {
+//                    ParseQuery<ParseUser> queryUsername = ParseUser.getQuery();
+//                    queryUsername.whereEqualTo("username", usernameText.getText().toString());
+//                    queryUsername.findInBackground(new FindCallback<ParseUser>() {
+//                        public void done(List<ParseUser> objects, ParseException e) {
+//                            if (e == null) {
+//                                Toast toastInner = Toast.makeText(getApplicationContext(),
+//                                        "This username is already being used, Please use another one",
+//                                        Toast.LENGTH_SHORT);
+//                                toastInner.show();
+//
+//                            } else {
+//                                // Something went wrong.
+//                            }
+//                        }
+//                    });
+//                }
+
+                //Checking for the email to be a credible one
+
+
                 //Adding data to the internal database
                 ParseUser pUser = new ParseUser();
                 pUser.setEmail(emailText.getText().toString());
                 pUser.setUsername(usernameText.getText().toString());
                 pUser.setPassword(passwordText.getText().toString());
-                //pUser.put("Name", nameText.getText().toString());
+                pUser.put("Name", nameText.getText().toString());
 
                 //Adding data to the parse backend database
                 pUser.signUpInBackground(new SignUpCallback() {
                     public void done(ParseException e) {
                         dlg.dismiss();
                         if (e != null) {
-                            Log.e("Registration","Failure!!!!!!!!!");
+                            Toast toastInner = Toast.makeText(getApplicationContext(),
+                                    "This username or email is already being used, Please use another one",
+                                    Toast.LENGTH_SHORT);
+                            toastInner.show();
                         } else {
-                            Log.e("Registration","Success");
+                            Toast toast = Toast.makeText(getApplicationContext(), "You have Registered Succesfully", Toast.LENGTH_LONG);
+                            toast.show();
+                            finish();
+
                         }
                     }
                 });
@@ -86,7 +129,8 @@ public class RegisterCredentials extends Activity {
         });
 
     }
-//    public void registerButton(View view){
+
+    //    public void registerButton(View view){
 //
 //        //Inserting into database
 //
@@ -99,9 +143,9 @@ public class RegisterCredentials extends Activity {
 //
 //    }
 //goes back to previous activity
-    public void cancelButton(View view){
+    public void cancelButton(View view) {
 
-    finish();
+        finish();
     }
 }
 
