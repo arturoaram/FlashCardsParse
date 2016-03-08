@@ -2,8 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffc106">
-
+    android:background="#ff1763">
+<RelativeLayout
+    android:id="@+id/Register"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:layout_gravity="center_horizontal|bottom"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,17 +23,16 @@
         android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
-        android:hint="Enter your Name" />
+        android:hint="@string/Enter_your_name" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/registerUsernameEditText"
-        android:hint="Enter your Username"
+        android:hint="@string/Enter_your_username"
         android:layout_below="@+id/registerEmailEditText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="80dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -34,13 +42,12 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/registerPasswordEditText"
-        android:hint="Enter your Password"
+        android:hint="@string/Enter_your_password"
         android:layout_below="@+id/registerUsernameEditText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="80dp" />
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -48,36 +55,42 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/registerEmailEditText"
+        android:hint="@string/Enter_your_email"
         android:layout_below="@+id/registerNameEditText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:hint="Enter your Email"
-        android:layout_marginTop="80dp" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/Cancel"
         android:background="#26ff12"
         android:id="@+id/registerCancelButton"
         android:nestedScrollingEnabled="true"
         android:onClick="cancelButton"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/registerPasswordEditText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="70dp" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/Register"
         android:id="@+id/registerRegisterButton"
-        android:onClick="registerButton"
         android:background="#ff04f2"
-        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/registerCancelButton"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="70dp" />
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fill out the Form and press register:"
+        android:id="@+id/TVRegister"
+        android:layout_above="@+id/Register"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

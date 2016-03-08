@@ -2,6 +2,7 @@ package com.example.arturo.flashcardsparse;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.net.*;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,10 @@ public class RegisterCredentials extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_cred);
+
+        //LoginandRegisterTab loginandRegisterTab=(LoginandRegisterTab) this.getParent();
+        //String currentTab= loginandRegisterTab.getTabHost().getCurrentTabTag();
+
         //Parse.enableLocalDatastore(this);
         //Parse.initialize(this);
         //cancelButton = (Button) findViewById(R.id);

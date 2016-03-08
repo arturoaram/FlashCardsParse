@@ -1,12 +1,11 @@
 package com.example.arturo.flashcardsparse;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -14,7 +13,7 @@ import com.parse.ParseUser;
 /**
  * Created by Arturo on 2/29/2016.
  */
-public class Credentials extends AppCompatActivity {
+public class Credentials extends Activity {
 
     EditText usernameEditText;
 
@@ -26,12 +25,42 @@ public class Credentials extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.credentials);
 
+        //LoginandRegisterTab loginandRegisterTab=(LoginandRegisterTab) this.getParent();
+      //  String currentTab= loginandRegisterTab.getTabHost().getCurrentTabTag();
+
+
+          //tabHost.setup();
+
+        //TabHost.TabSpec tabSpec= tabHost.newTabSpec("login");
+        //tabSpec.setContent(R.id.Login);
+        //tabSpec.setIndicator("Login");
+        //tabHost.addTab(tabSpec);
+
+
+        //tabSpec= tabHost.newTabSpec("register");
+        //tabSpec.setContent(R.id.Register);
+        //tabSpec.setIndicator("Register");
+        //tabHost.addTab(tabSpec);
 
         usernameEditText = (EditText) findViewById(R.id.credentialsUsernameEditText);
         passwordEditText = (EditText) findViewById(R.id.credentialsPasswordEditText);
+        //regNameET=(EditText)findViewById(R.id.nameET);
+        //regUsernameET=(EditText)findViewById(R.id.usernameET);
+        //regPasswordET=(EditText)findViewById(R.id.passwordET);
+        //regEmailET=(EditText)findViewById(R.id.emailET);
+
         //signInButton = (Button) findViewById(R.id.credentialsSignInButton);
     }
+//private static View createTabView(Context context, String tabText){
+  //  View view= LayoutInflater.from(context).inflate(R.layout.custom_tab,null,false);
+    //TextView tv=(TextView)view.findViewById(R.id.tabTitleText);
+    //tv.setText(tabText);
+    //return view;
 
+
+
+
+//}
     public void logInButton(View view) throws ParseException {
 
         Boolean check = true;

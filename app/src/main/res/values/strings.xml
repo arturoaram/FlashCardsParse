@@ -4,4 +4,12 @@
 
     <string name="parse_app_id">l267bi83DE38uur76wC7rqZwRDFUQDhKVgJXu7P7</string>
     <string name="parse_client_id">hnvfX09IXjyA3i6QOTFJHhjkxxwaUbyAZzVeYREA</string>
+    <string name="Enter_your_name">Enter your name</string>
+    <string name="Enter_your_username">Enter your username</string>
+    <string name="Enter_your_password">Enter your password</string>
+    <string name="Enter_your_email">Enter your email</string>
+    <string name="Sign_In">Sign in</string>
+    <string name="Enter_your_Username_and_Password">Enter your username and password:</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Register">Register</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.arturo.flashcardsparse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -47,9 +48,17 @@ public class UserMenu extends AppCompatActivity {
 
 
 
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-}
+
+    public void createFlashCards(){
+
+
+    Intent i= new Intent(this, CreateFlashcards.class);
+    startActivity(i);
+
+}}

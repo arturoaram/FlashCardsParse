@@ -10,7 +10,9 @@
         android:id="@+id/createFlashcardsBtn"
         android:layout_marginTop="59dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="createFlashcards"
+        android:nestedScrollingEnabled="false" />
 
     <Button
         android:layout_width="100dp"
