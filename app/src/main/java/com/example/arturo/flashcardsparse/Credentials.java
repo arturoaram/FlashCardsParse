@@ -36,11 +36,7 @@ public class Credentials extends Activity {
 
         //signInButton = (Button) findViewById(R.id.credentialsSignInButton);
     }
-//private static View createTabView(Context context, String tabText){
-  //  View view= LayoutInflater.from(context).inflate(R.layout.custom_tab,null,false);
-    //TextView tv=(TextView)view.findViewById(R.id.tabTitleText);
-    //tv.setText(tabText);
-    //return view;
+
 
 
 
