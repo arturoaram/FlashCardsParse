@@ -25,22 +25,7 @@ public class Credentials extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.credentials);
 
-        //LoginandRegisterTab loginandRegisterTab=(LoginandRegisterTab) this.getParent();
-      //  String currentTab= loginandRegisterTab.getTabHost().getCurrentTabTag();
 
-
-          //tabHost.setup();
-
-        //TabHost.TabSpec tabSpec= tabHost.newTabSpec("login");
-        //tabSpec.setContent(R.id.Login);
-        //tabSpec.setIndicator("Login");
-        //tabHost.addTab(tabSpec);
-
-
-        //tabSpec= tabHost.newTabSpec("register");
-        //tabSpec.setContent(R.id.Register);
-        //tabSpec.setIndicator("Register");
-        //tabHost.addTab(tabSpec);
 
         usernameEditText = (EditText) findViewById(R.id.credentialsUsernameEditText);
         passwordEditText = (EditText) findViewById(R.id.credentialsPasswordEditText);
