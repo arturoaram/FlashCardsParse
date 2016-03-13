@@ -1,0 +1,17 @@
+@startuml
+
+class FlashCard{
+    -term : String
+    -definition : String
+    -image : Image
+
+    #Flashcard( t :term, d : definition, img = image)
+    #Flashcard( t :term, d : definition)
+    +setTerm( t : term ) : void
+    +setDefinition( d : definition ) : void
+    +setImage( img : image) : void
+    +getTerm() : String
+    +getDefinition() : String
+    +getImage() : Image
+}
+@enduml

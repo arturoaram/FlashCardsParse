@@ -2,7 +2,6 @@ package com.example.arturo.flashcardsparse;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.net.*;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -83,7 +82,6 @@ public class RegisterCredentials extends Activity {
                 //Checking if Username and Email are not duplicates
 
 
-
 //                if (checkForToast == false) {
 //                    ParseQuery<ParseUser> queryUsername = ParseUser.getQuery();
 //                    queryUsername.whereEqualTo("username", usernameText.getText().toString());
@@ -122,9 +120,13 @@ public class RegisterCredentials extends Activity {
                                     Toast.LENGTH_SHORT);
                             toastInner.show();
                         } else {
-                            Toast toast = Toast.makeText(getApplicationContext(), "You have Registered Succesfully", Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(getApplicationContext(), "You have Registered Succesfully", Toast.LENGTH_SHORT);
                             toast.show();
-                            finish();
+                            //finish();
+
+                            Toast toastLogin = Toast.makeText(getApplicationContext(), "Now Log in in the Login Tab!", Toast.LENGTH_SHORT);
+                            toastLogin.show();
+
 
                         }
                     }

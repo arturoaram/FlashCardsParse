@@ -1,8 +1,8 @@
 package com.example.arturo.flashcardsparse;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -32,13 +32,18 @@ public class UserMenu extends AppCompatActivity {
         UN = getIntent().getStringExtra("USERNAME");
         PW = getIntent().getStringExtra("PASSWORD");
 
+        Log.e("Username: ",UN.toString());
+        Log.e("Password: ",UN.toString());
+
         if (!UN.isEmpty() && !PW.isEmpty()) {
 
             ParseUser.logInInBackground(UN, PW, new LogInCallback() {
                 public void done(ParseUser user, ParseException e) {
                     if (user != null) {
-                        UsernameName = user.getUsername().toString();
-                        setTitle(UsernameName);
+
+                        UsernameName = user.get("Name").toString();
+
+                        setTitle("Welcome: " + UsernameName);
                     } else {
                         // Signup failed. Look at the ParseException to see what happened.
                     }
@@ -58,7 +63,7 @@ public class UserMenu extends AppCompatActivity {
     public void createFlashCards(){
 
 
-    Intent i= new Intent(this, CreateFlashcards.class);
-    startActivity(i);
+//    Intent i= new Intent(this, CreateFlashcards.class);
+//    startActivity(i);
 
 }}
