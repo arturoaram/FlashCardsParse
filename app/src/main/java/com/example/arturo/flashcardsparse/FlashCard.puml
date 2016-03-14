@@ -1,7 +1,21 @@
 @startuml
 
+FlashCardSet ->FlashCard
+
+class FlashCardSet{
+    -fc : String
+    -fcArr : Array - FlashCard
+
+    #FlashCardSet()
+
+    +isEmpty()
+    +addFlashCard()
+    +delete()
+    +deleteCurrentFlashCard()
+    +getFlashCard()
+}
 class FlashCard{
-    -term : String
+    -term : String Private
     -definition : String
     -image : Image
 
@@ -14,4 +28,6 @@ class FlashCard{
     +getDefinition() : String
     +getImage() : Image
 }
+
+
 @enduml
