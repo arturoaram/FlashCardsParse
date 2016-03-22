@@ -1,6 +1,6 @@
 package com.example.arturo.flashcardsparse;
 
-import android.media.Image;
+import android.widget.ImageView;
 
 /**
  * Created by Arturo on 3/12/2016.
@@ -8,9 +8,9 @@ import android.media.Image;
 public class FlashCard {
     private String term;
     private String definition;
-    private Image img;
+    private ImageView img;
 
-    public FlashCard(String n, String d, Image i) {
+    public FlashCard(String n, String d, ImageView i) {
         term = n;
         definition = d;
         img = i;
@@ -29,7 +29,7 @@ public class FlashCard {
         this.definition = definition;
     }
 
-    public void setImg(Image img) {
+    public void setImg(ImageView img) {
         this.img = img;
     }
 
@@ -41,7 +41,31 @@ public class FlashCard {
         return definition;
     }
 
-    public Image getImg() {
+    public ImageView getImg() {
         return img;
+    }
+
+    public void add(String t, String d, ImageView i) {
+
+//        if (i != null) {
+//
+//            i.setDrawingCacheEnabled(true);
+//            i.buildDrawingCache();
+//            Bitmap bm = i.getDrawingCache();
+//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//            bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//            byte[] data = stream.toByteArray();
+//
+//            ParseFile file = new ParseFile("hola.png", data);
+//            file.saveInBackground();
+//
+//            ParseObject flashCard = new ParseObject("FlashCard");
+//            flashCard.put("term" , getTerm());
+//            flashCard.put("description", getDefinition());
+//            flashCard.put("picture",file);
+//            flashCard.saveInBackground();
+//
+//
+//        }
     }
 }
