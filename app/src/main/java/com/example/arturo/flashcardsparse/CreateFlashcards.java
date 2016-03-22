@@ -1,10 +1,13 @@
 package com.example.arturo.flashcardsparse;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -23,6 +26,8 @@ private RecyclerView mRecyclerView;
     EditText term;
     EditText definition;
     Button startCamera2;
+    final int REQUEST_CAMERA=3;
+    final int SELECT_FILE=2;
     ImageView imageView;
 TextView CreateFlashcards;
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,38 +41,46 @@ TextView CreateFlashcards;
 //                StaggeredGridLayoutManager.VERTICAL);
 //        mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
 
-        term=(EditText)findViewById(R.id.term);
-        definition=(EditText)findViewById(R.id.definition);
-        imageView=(ImageView) findViewById(R.id.imageView);
-        startCamera2=(Button) findViewById(R.id.startCamera);
-final int CAMERA_PIC_REQUEST=3;
-
-        startCamera2.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    {
-
-                        Intent intent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                        //intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                        intent.putExtra("return-data", true);
-                        startActivityForResult(intent,CAMERA_PIC_REQUEST);
-                    }
-                });
-
-
+        term = (EditText) findViewById(R.id.term);
+        definition = (EditText) findViewById(R.id.definition);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        startCamera2 = (Button) findViewById(R.id.startCamera);
 
     }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode== Activity.RESULT_OK)
-        {
-            Bitmap bitmap=(Bitmap)data.getExtras().get("data");
-            imageView.setImageBitmap(bitmap);
-        }
+   public void selectImage() {
+        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(CreateFlashcards.this);
+        builder.setTitle("Add Photo!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (items[item].equals("Take Photo")) {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, REQUEST_CAMERA);
+                } else if (items[item].equals("Choose from Library")) {
+                    Intent intent = new Intent(
+                            Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(
+                            Intent.createChooser(intent, "Select File"),
+                            SELECT_FILE);
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 }
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+//    {
+//
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(resultCode== Activity.RESULT_OK)
+//        {
+//            Bitmap bitmap=(Bitmap)data.getExtras().get("data");
+//            imageView.setImageBitmap(bitmap);
+//        }
+//    }
+//}
