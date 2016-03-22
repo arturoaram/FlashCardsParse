@@ -4,10 +4,12 @@ package com.example.arturo.flashcardsparse;
  * Created by Arturo on 3/12/2016.
  */
 public class FlashCardsSet {
+    String name;
     FlashCard fc;
     FlashCard[] fcArr;
 
-    public FlashCardsSet(){
+    public FlashCardsSet(String n){
+        n = name;
         fc = null;
         fcArr = new FlashCard[40];
     }
@@ -19,8 +21,8 @@ public class FlashCardsSet {
         }
         return true;
     }
-    public void addFlashCard(){
-
+    public void addFlashCard(FlashCard flashcard){
+        fc = flashcard;
     }
     public void deleteCurrentFlashCard(FlashCard currentFC){
 

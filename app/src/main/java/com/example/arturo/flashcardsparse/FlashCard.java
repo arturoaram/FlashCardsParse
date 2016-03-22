@@ -1,6 +1,12 @@
 package com.example.arturo.flashcardsparse;
 
+import android.graphics.Bitmap;
 import android.widget.ImageView;
+
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Arturo on 3/12/2016.
@@ -45,27 +51,35 @@ public class FlashCard {
         return img;
     }
 
-    public void add(String t, String d, ImageView i) {
+    public void add() {
 
-//        if (i != null) {
-//
-//            i.setDrawingCacheEnabled(true);
-//            i.buildDrawingCache();
-//            Bitmap bm = i.getDrawingCache();
-//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//            bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//            byte[] data = stream.toByteArray();
-//
-//            ParseFile file = new ParseFile("hola.png", data);
-//            file.saveInBackground();
-//
-//            ParseObject flashCard = new ParseObject("FlashCard");
-//            flashCard.put("term" , getTerm());
-//            flashCard.put("description", getDefinition());
-//            flashCard.put("picture",file);
-//            flashCard.saveInBackground();
-//
-//
-//        }
+        if (img != null) {
+
+            img.setDrawingCacheEnabled(true);
+            img.buildDrawingCache();
+            Bitmap bm = img.getDrawingCache();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] data = stream.toByteArray();
+
+            ParseFile file = new ParseFile("hola.png", data);
+            file.saveInBackground();
+
+            ParseObject flashCard = new ParseObject("FlashCard");
+            flashCard.put("term" , getTerm());
+            flashCard.put("description", getDefinition());
+            flashCard.put("picture",file);
+            flashCard.saveInBackground();
+
+
+        }
+    }
+        public void add(String t, String d){
+
+            ParseObject flashCard = new ParseObject("FlashCard");
+            flashCard.put("term" , getTerm());
+            flashCard.put("description", getDefinition());
+            flashCard.saveInBackground();
+
     }
 }

@@ -11,7 +11,7 @@
         android:layout_marginTop="59dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:onClick="createFlashcards"
+        android:onClick="createFlashCards"
         android:nestedScrollingEnabled="false" />
 
     <Button
