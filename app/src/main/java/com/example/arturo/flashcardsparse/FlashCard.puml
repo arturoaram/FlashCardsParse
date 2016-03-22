@@ -3,16 +3,17 @@
 FlashCardSet ->FlashCard
 
 class FlashCardSet{
-    -fc : String
+    -fcName : String
+    -fc : FlashCard
     -fcArr : Array - FlashCard
 
-    #FlashCardSet()
+    #FlashCardSet(name : fcName)
 
-    +isEmpty()
-    +addFlashCard()
-    +delete()
-    +deleteCurrentFlashCard()
-    +getFlashCard()
+    +isEmpty() : Boolean
+    +addFlashCard(flashC : FlashCard) : void
+    +delete() : void
+    +deleteCurrentFlashCard(flashC : FlashCard)
+    +getFlashCard() : FlashCard
 }
 class FlashCard{
     -term : String Private
