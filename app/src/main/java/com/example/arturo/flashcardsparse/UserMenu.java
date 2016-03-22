@@ -1,8 +1,10 @@
 package com.example.arturo.flashcardsparse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -32,8 +34,8 @@ public class UserMenu extends AppCompatActivity {
         UN = getIntent().getStringExtra("USERNAME");
         PW = getIntent().getStringExtra("PASSWORD");
 
-        Log.e("Username: ",UN.toString());
-        Log.e("Password: ",UN.toString());
+        Log.e("Username: ", UN.toString());
+        Log.e("Password: ", UN.toString());
 
         if (!UN.isEmpty() && !PW.isEmpty()) {
 
@@ -52,18 +54,16 @@ public class UserMenu extends AppCompatActivity {
         }
 
 
-
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
-    public void createFlashCards(){
+    public void createFlashCards(View view) {
 
+        Intent i = new Intent(this, CreateFlashcards.class);
+        startActivity(i);
 
-//    Intent i= new Intent(this, CreateFlashcards.class);
-//    startActivity(i);
-
-}}
+    }
+}
