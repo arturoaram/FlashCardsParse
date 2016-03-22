@@ -23,7 +23,8 @@
         android:layout_alignLeft="@+id/searchPublicFlashcardsBtn"
         android:layout_alignStart="@+id/searchPublicFlashcardsBtn"
         android:layout_alignRight="@+id/searchPublicFlashcardsBtn"
-        android:layout_alignEnd="@+id/searchPublicFlashcardsBtn" />
+        android:layout_alignEnd="@+id/searchPublicFlashcardsBtn"
+        android:onClick="ViewFlashCards" />
 
     <Button
         android:layout_width="75dp"

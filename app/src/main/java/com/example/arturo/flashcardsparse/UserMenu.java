@@ -66,4 +66,10 @@ public class UserMenu extends AppCompatActivity {
         startActivity(i);
 
     }
+    public void ViewFlashCards(View view) {
+
+        Intent i = new Intent(this, display.class);
+        startActivity(i);
+
+    }
 }
