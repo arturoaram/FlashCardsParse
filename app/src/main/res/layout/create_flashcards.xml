@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Flashcards"
-        android:id="@+id/textViewCF"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/editText"
+        android:hint="Term" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:hint="Definition"
+        android:layout_weight="0.42" />
+
+    <ImageView
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:text="add Picture"
+        android:onClick="ADD PICTURE"
+        android:layout_weight="0.40" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="start Camera"
+        android:id="@+id/startCamera"/>
 </LinearLayout>
