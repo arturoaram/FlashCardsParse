@@ -6,7 +6,7 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="100dp"
-        android:text="Create Flashcards"
+        android:text="@string/Create_Flashcards"
         android:id="@+id/createFlashcardsBtn"
         android:layout_marginTop="59dp"
         android:layout_alignParentTop="true"
@@ -17,7 +17,7 @@
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Start Studying"
+        android:text="@string/Start_Studying"
         android:id="@+id/startStudyingBtn"
         android:layout_above="@+id/searchPublicFlashcardsBtn"
         android:layout_alignLeft="@+id/searchPublicFlashcardsBtn"
@@ -29,7 +29,7 @@
     <Button
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:text="Search Public Flashcards"
+        android:text="@string/Search_Public_Flashcards"
         android:id="@+id/searchPublicFlashcardsBtn"
         android:layout_above="@+id/matchingGameBtn"
         android:layout_alignLeft="@+id/matchingGameBtn"
@@ -40,7 +40,7 @@
     <Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Matching Game"
+        android:text="@string/Matching_Game"
         android:id="@+id/matchingGameBtn"
         android:layout_marginBottom="82dp"
         android:layout_alignParentBottom="true"

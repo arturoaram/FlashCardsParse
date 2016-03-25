@@ -104,6 +104,7 @@ public class RegisterCredentials extends Activity {
 
 
                 //Adding data to the internal database
+
                 ParseUser pUser = new ParseUser();
                 pUser.setEmail(emailText.getText().toString());
                 pUser.setUsername(usernameText.getText().toString());
