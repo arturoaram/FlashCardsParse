@@ -51,7 +51,7 @@ public class FlashCard {
         return img;
     }
 
-    public void add() {
+    public void add(ParseObject PO) {
 
         if (img != null) {
 
@@ -69,17 +69,18 @@ public class FlashCard {
             flashCard.put("term" , getTerm());
             flashCard.put("description", getDefinition());
             flashCard.put("picture",file);
+            flashCard.put("Parent",PO);
             flashCard.saveInBackground();
-
-
         }
-    }
-        public void add(String t, String d){
 
+        else{
             ParseObject flashCard = new ParseObject("FlashCard");
             flashCard.put("term" , getTerm());
             flashCard.put("description", getDefinition());
+            flashCard.put("Parent",PO);
             flashCard.saveInBackground();
+        }
 
     }
+
 }

@@ -4,12 +4,24 @@ package com.example.arturo.flashcardsparse;
  * Created by Arturo on 3/12/2016.
  */
 public class FlashCardsSet {
-    String name;
+    String title;
+    String className;
+    String subject;
+    String school;
+    Boolean Permission;
     FlashCard fc;
     FlashCard[] fcArr;
 
+    public FlashCardsSet(String t, String c, String s, String sc, Boolean p){
+        title = t;
+        className = c;
+        subject = s;
+        school = sc;
+        Permission=p;
+    }
+
     public FlashCardsSet(String n){
-        n = name;
+        title = n;
         fc = null;
         fcArr = new FlashCard[40];
     }

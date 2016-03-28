@@ -17,7 +17,7 @@ import com.parse.ParseUser;
  */
 public class UserMenu extends AppCompatActivity {
 
-    String UN, PW, UsernameName;
+    String UN, PW, UsernameName, ID;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -33,7 +33,6 @@ public class UserMenu extends AppCompatActivity {
 
         UN = getIntent().getStringExtra("USERNAME");
         PW = getIntent().getStringExtra("PASSWORD");
-
         Log.e("Username: ", UN.toString());
         Log.e("Password: ", UN.toString());
 
@@ -42,7 +41,7 @@ public class UserMenu extends AppCompatActivity {
             ParseUser.logInInBackground(UN, PW, new LogInCallback() {
                 public void done(ParseUser user, ParseException e) {
                     if (user != null) {
-
+                        ID = user.getObjectId().toString();
                         UsernameName = user.get("Name").toString();
 
                         setTitle("Welcome: " + UsernameName);
@@ -62,7 +61,8 @@ public class UserMenu extends AppCompatActivity {
 
     public void createFlashCards(View view) {
 
-        Intent i = new Intent(this, CreateFlashcards.class);
+        Intent i = new Intent(this, SetTitleofFC.class);
+        i.putExtra("Object ID",ID);
         startActivity(i);
 
     }

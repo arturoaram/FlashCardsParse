@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#700b71">
 
 
     <EditText
@@ -36,7 +37,9 @@
         android:layout_below="@+id/editText2"
         android:layout_toLeftOf="@+id/button"
         android:layout_toStartOf="@+id/button"
-        android:layout_above="@+id/startCamera" />
+        android:layout_above="@+id/startCamera"
+        android:background="#f0a5a5"
+        android:src="#ffffff" />
 
     <ImageButton
         android:layout_width="wrap_content"

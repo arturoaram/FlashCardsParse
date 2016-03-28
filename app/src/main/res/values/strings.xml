@@ -24,8 +24,8 @@
 
 
     <string-array name="school_array">
-        <item>Appalachian State University</item>
-        <item>East Carolina University</item>
+        <item> Appalachian State University</item>
+        <item> East Carolina University</item>
         <item> Elizabeth City State University</item>
         <item> Fayetteville State University</item>
         <item> North Carolina Agricultural and Technical State University</item>
@@ -40,5 +40,6 @@
         <item> University of North Carolina School of the Arts</item>
         <item> Western Carolina University</item>
         <item> Winston-Salem State University</item>
+        <item> No School</item>
     </string-array>
 </resources>
