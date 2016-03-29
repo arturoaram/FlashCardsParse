@@ -5,43 +5,72 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.security.auth.Subject;
 
 /**
  * Created by Owner on 3/28/2016.
  */
 public class UsersFlashcardSets extends Activity {
-ListView listview;
-    List<ParseObject> ob;
+    ListView listview;
+    ArrayList<FlashCardsSet> arFlashCardsSet;
     ProgressDialog mProgressDialog;
-   ListViewAdapter adapter;
-    private List<SetsFC> setsList=null;
+    FlashCardSetAdapter adapter;
+    private List<SetsFC> setsList = null;
+    ParseUser user;
+    List<FlashCardsSet> lFC;
+    //Context context= getApplicationContext();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.users_fcsets);
 
+        listview = (ListView) findViewById(R.id.listView);
 
+        Log.d("QUERY OBJECT ID CHEKCK", user.getCurrentUser().getObjectId());
         new RemoteDataTask().execute();
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("SetFC");
+        query.whereEqualTo("Parent", user.getCurrentUser());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> scoreList, ParseException e) {
+                if (e == null) {
+                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
+                    //arFlashCardsSet.addAll(scoreList);
+                    arFlashCardsSet = new ArrayList<FlashCardsSet>();
+                    arFlashCardsSet.addAll(parseObjectToFlashCardSetConverter(scoreList));
+                    adapter = new FlashCardSetAdapter(getApplicationContext(), arFlashCardsSet);
+                    listview.setAdapter(adapter);
+
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+        mProgressDialog.dismiss();
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(),StartStudyingFC.class);
+                startActivity(intent);
+            }
+        });
 
 
     }  // RemoteDataTask AsyncTask
+
     private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -59,47 +88,49 @@ ListView listview;
 
         @Override
         protected Void doInBackground(Void... params) {
-            // Locate the class table named "SetFC" in Parse.com
-            setsList=new ArrayList<SetsFC>();
-            try{
-            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
-                    "SetFC");
-            query.orderByAscending("_created_at");
-                ob=query.find();
-                for (ParseObject SetFC : ob) {
-                    SetsFC map=new SetsFC();
-                    map.setTitle((String)SetFC.get("Title"));
-                   // map.setClassname((String)SetFC.get("Classname"));
-                   // map.setSubject((String)SetFC.get("Subject"));
-                  //  map.setSchool((String)SetFC.get("School"));
-                    setsList.add(map);}
-
-              //  ob = query.find();
-            } catch (ParseException e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
+//            // Locate the class table named "SetFC" in Parse.com
+//            setsList = new ArrayList<SetsFC>();
+//            try {
+//                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
+//                        "SetFC");
+//                query.orderByAscending("_created_at");
+//                query.whereEqualTo("Parent", user.getCurrentUser());
+//                ob = query.find();
+//                for (ParseObject SetFC : ob) {
+//                    SetsFC map = new SetsFC();
+//                    map.setTitle((String) SetFC.get("Title"));
+//                    // map.setClassname((String)SetFC.get("Classname"));
+//                    // map.setSubject((String)SetFC.get("Subject"));
+//                    //  map.setSchool((String)SetFC.get("School"));
+//                    setsList.add(map);
+//                }
+//
+//                //  ob = query.find();
+//            } catch (ParseException e) {
+//                Log.e("Error", e.getMessage());
+//                e.printStackTrace();
+//            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             // Locate the listview in listview_main.xml
-            listview = (ListView) findViewById(R.id.listView);
+//            listview = (ListView) findViewById(R.id.listView);
             // Pass the results into an ArrayAdapter
-            adapter = new ListViewAdapter(UsersFlashcardSets.this,
-                    setsList);
+//            adapter = new ListViewAdapter(UsersFlashcardSets.this,
+//                    setsList);
             // Retrieve object "name" from Parse.com database
 
             //    adapter.add((String) SetFC.get("Title"));
-              //  adapter.add((String) SetFC.get("Classname"));
-               // adapter.add((String) SetFC.get("School"));
-               //adapter.add((String) SetFC.get("Subject"));
-          //  }
+            //  adapter.add((String) SetFC.get("Classname"));
+            // adapter.add((String) SetFC.get("School"));
+            //adapter.add((String) SetFC.get("Subject"));
+            //  }
             // Binds the Adapter to the ListView
-            listview.setAdapter(adapter);
+//            listview.setAdapter(adapter);
             // Close the progressdialog
-            mProgressDialog.dismiss();
+           // mProgressDialog.dismiss();
 
             // Capture button clicks on ListView items
 //          listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -116,8 +147,21 @@ ListView listview;
 ////                    // Open SingleItemView.java Activity
 //                    startActivity(i);
             //    }
-          //  });
+            //  });
         }
+    }
+    public List<FlashCardsSet> parseObjectToFlashCardSetConverter(List<ParseObject> list){
+        List<FlashCardsSet> lFC = new ArrayList<FlashCardsSet>();
+        FlashCardsSet fcObject;
+        if(list!=null){
+        for(ParseObject po : list){
+            if(po!=null){
+            fcObject = new FlashCardsSet(po);
+                lFC.add(fcObject);
+            }
+        }
+        }
+        return lFC;
     }
 }
 

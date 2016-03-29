@@ -12,9 +12,12 @@ import java.io.ByteArrayOutputStream;
  * Created by Arturo on 3/12/2016.
  */
 public class FlashCard {
-    private String term;
-    private String definition;
-    private ImageView img;
+    protected String term;
+    protected String definition;
+    protected ImageView img;
+
+    protected static final String TERM_PREFIX = "Term_";
+    protected static final String DEFINITION_PREFIX = "Definition_";
 
     public FlashCard(String n, String d, ImageView i) {
         term = n;

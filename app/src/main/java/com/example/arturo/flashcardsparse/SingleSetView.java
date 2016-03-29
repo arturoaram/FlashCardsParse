@@ -19,7 +19,7 @@ public class SingleSetView extends Activity
     public void onCreate(Bundle savedInstanceState){
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_studying_fc);
+
 
         Intent i=getIntent();
         title=i.getStringExtra("Title");

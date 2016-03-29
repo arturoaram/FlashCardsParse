@@ -1,105 +1,53 @@
 package com.example.arturo.flashcardsparse;
 
-import android.content.Context;
-import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Owner on 3/28/2016.
  */
-public class ListViewAdapter extends BaseAdapter {
+public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.FlashcardViewHolder> {
 
+private List<FlashCard> cardListt;
 
-    Context mContext;
-    LayoutInflater inflater;
-    private List<SetsFC> setsList = null;
-    private ArrayList<SetsFC> arraylist;
+    public ListViewAdapter(List<FlashCard> cardListt){
+        this.cardListt=cardListt;
 
-    public ListViewAdapter(Context context,
-                           List<SetsFC> setsList) {
-        mContext = context;
-        this.setsList = setsList;
-        inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<SetsFC>();
-        this.arraylist.addAll(setsList);
     }
 
-    public class ViewHolder {
-        TextView title;
-        TextView classname;
-        TextView subject;
-        TextView school;
+
+    @Override
+    public ListViewAdapter.FlashcardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+      View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.studying_cards,parent,false);
+        return new FlashcardViewHolder(itemView);
     }
 
     @Override
-    public int getCount() {
-        return setsList.size();
+    public void onBindViewHolder(ListViewAdapter.FlashcardViewHolder holder, int position) {
+            FlashCard fc= cardListt.get(position);
+        holder.vTerm.setText(fc.term);
+        holder.vDefinition.setText(fc.definition);
     }
 
     @Override
-    public SetsFC getItem(int position) {
-        return setsList.get(position);
+    public int getItemCount() {
+        return cardListt.size();
     }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public static class FlashcardViewHolder extends RecyclerView.ViewHolder{
 
-    public View getView(final int position, View view, ViewGroup parent) {
-        final ViewHolder holder;
-        if (view == null) {
-            holder = new ViewHolder();
-            view = inflater.inflate(R.layout.listview_item, null);
-            // Locate the TextViews in listview_item.xml
-            holder.title = (TextView) view.findViewById(R.id.title);
-            holder.classname = (TextView) view.findViewById(R.id.classname);
-            holder.subject = (TextView) view.findViewById(R.id.subject);
-            holder.school=(TextView)view.findViewById(R.id.school);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
+        protected TextView vTerm;
+        protected TextView vDefinition;
+
+        public FlashcardViewHolder(View v){
+            super(v);
+            vTerm=(TextView)v.findViewById(R.id.termC);
+            vDefinition=(TextView)v.findViewById(R.id.definitionC);
         }
-        // Set the results into TextViews
-        holder.title.setText(setsList.get(position).getTitle());
-        holder.classname.setText(setsList.get(position).getClassname());
-        holder.subject.setText(setsList.get(position)
-                .getSubject());
-        holder.school.setText(setsList.get(position).getSchool());
-
-        // Listen for ListView Item Click
-        view.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                // Send single item click data to SingleItemView Class
-                Intent intent = new Intent(mContext, SingleSetView.class);
-                // Pass all data rank
-                intent.putExtra("title",
-                        (setsList.get(position).getTitle()));
-                // Pass all data country
-                intent.putExtra("classname",
-                        (setsList.get(position).getClassname()));
-                // Pass all data population
-                intent.putExtra("subject",
-                        (setsList.get(position).getSubject()));
-                // Start SingleItemView Class
-
-                intent.putExtra("school",(setsList.get(position).getSchool()));
-                mContext.startActivity(intent);
-            }
-        });
-
-        return view;
     }
-
-
-
 }

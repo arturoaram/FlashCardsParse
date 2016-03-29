@@ -37,7 +37,7 @@ public class SetTitleofFC extends Activity implements AdapterView.OnItemSelected
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_title_of_fc);
 
-        objectID = getIntent().getStringExtra("Object ID");
+
 
         title = (EditText) findViewById(R.id.title);
         classnum = (EditText) findViewById(R.id.classED);

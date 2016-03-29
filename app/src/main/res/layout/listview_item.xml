@@ -7,19 +7,34 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/title"/>
+        android:id="@+id/title"
+        android:hint="Hola"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/classname"/>
+        android:id="@+id/classname"
+        android:hint="Classname"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/subject"/>
+        android:id="@+id/subject"
+        android:hint="Subject"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/school"/>
+        android:id="@+id/school"
+        android:hint="School"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/classname"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

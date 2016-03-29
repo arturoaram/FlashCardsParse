@@ -1,5 +1,7 @@
 package com.example.arturo.flashcardsparse;
 
+import com.parse.ParseObject;
+
 /**
  * Created by Arturo on 3/12/2016.
  */
@@ -18,6 +20,15 @@ public class FlashCardsSet {
         subject = s;
         school = sc;
         Permission=p;
+    }
+
+    public FlashCardsSet(ParseObject PO){
+        title = PO.getString("Title");
+        className = PO.getString("Classname");
+        subject = PO.getString("Subject");
+        school = PO.getString("School");
+        Permission = PO.getBoolean("Public");
+
     }
 
     public FlashCardsSet(String n){
