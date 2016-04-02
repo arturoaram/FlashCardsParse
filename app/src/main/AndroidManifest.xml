@@ -32,9 +32,9 @@
         <activity android:name=".Credentials"/>
         <activity android:name=".RegisterCredentials" />
         <activity android:name=".UserMenu"/>
-        <activity android:name=".SingleSetView"/>
         <activity android:name=".UsersFlashcardSets"/>
         <activity android:name=".StartStudyingFC"/>
+        <activity android:name=".StudyCardsActivity"/>
         
             <activity android:name=".SetTitleofFC"
             android:label="@string/app_name"
