@@ -78,7 +78,8 @@ public class SetTitleofFC extends Activity implements AdapterView.OnItemSelected
     //goes back to home screen
     public void cancelToHome() {
 
-        finish();
+        Intent i= new Intent(this, UserMenu.class);
+     startActivity(i);
     }
 
     //goes on ahead and creates new set of cards.

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#7183c2">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/doNotdistubBTN"
+        android:src="@drawable/doNotdisturb"
+        android:layout_marginTop="89dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This button shuts off all notifications while app is running."
+        android:id="@+id/textforDND"
+        android:layout_alignTop="@+id/doNotdistubBTN"
+        android:layout_toEndOf="@+id/doNotdistubBTN"
+        android:textSize="25sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/oldpwd"
+        android:hint="Enter old password"
+        android:layout_above="@+id/newpwd"
+        android:layout_alignEnd="@+id/logOutButton" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/newpwd"
+        android:hint="Enter new password"
+        android:layout_above="@+id/logOutButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="41dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:id="@+id/logOutButton"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/newpwd"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To change password enter old and then new password."
+        android:id="@+id/tvforpwd"
+        android:layout_alignBottom="@+id/oldpwd"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="41dp"
+        android:textSize="20sp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/save_btn"
+
+        android:layout_alignTop="@+id/newpwd"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
