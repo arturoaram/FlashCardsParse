@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.appindexing.AppIndex;
@@ -64,10 +67,38 @@ public class UserMenu extends AppCompatActivity {
         startActivity(i);
 
     }
+
     public void ViewFlashCards(View view) {
 
         Intent i = new Intent(this, UsersFlashcardSets.class);
         startActivity(i);
 
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+
+            case R.id.action_settings:
+               Intent i =new Intent(this, setting_in_usermenu.class);
+                startActivity(i);
+                    closeOptionsMenu();
+                return true;
+
+
+            //case R.id.quit:
+              //  setContentView(R.layout.user_menu);
+
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+
 }
+
