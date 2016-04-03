@@ -11,31 +11,45 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
+
 /**
  * Created by Owner on 4/3/2016.
  */
 public class setting_in_usermenu extends AppCompatActivity {
 
-    EditText oldpwdET;
-    EditText newpwdET;
+
     Button Logout;
-    Button Save;
+    Button resetButton;
     ImageButton doNotdisturb;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        doNotdisturb=(ImageButton)findViewById(R.id.doNotdistubBTN);
-        oldpwdET=(EditText)findViewById(R.id.oldpwd);
-        newpwdET=(EditText)findViewById(R.id.newpwd);
+
         Logout=(Button)findViewById(R.id.logOutButton);
-        Save=(Button)findViewById(R.id.save_btn);
+        resetButton=(Button)findViewById(R.id.resetBtn);
 
         setTitle("Settings");
 
 
 
-
+resetButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        ParseUser.requestPasswordResetInBackground("myemail@example.com", new RequestPasswordResetCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    // An email was successfully sent with reset instructions.
+                } else {
+                    // Something went wrong. Look at the ParseException to see what's up.
+                }
+            }
+        });
+    }
+});
 
 
 
