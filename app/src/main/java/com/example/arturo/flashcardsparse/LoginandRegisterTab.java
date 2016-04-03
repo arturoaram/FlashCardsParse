@@ -4,6 +4,7 @@ import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TabHost;
@@ -14,12 +15,13 @@ import android.widget.TextView;
  */
 public class LoginandRegisterTab extends TabActivity{
 
+    SearchView sv;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_and_registertab);
 
-
+sv=(SearchView) findViewById(R.id.searchView);
         TabHost tabHost = getTabHost();
 
         TabHost.TabSpec spec;
@@ -50,8 +52,5 @@ public class LoginandRegisterTab extends TabActivity{
     }
 
 
-public void up(View view){
 
-    //why wont this send to github
-}
 }

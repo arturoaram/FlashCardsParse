@@ -99,6 +99,11 @@ public class UserMenu extends AppCompatActivity {
         return super.onOptionsItemSelected(menuItem);
     }
 
+public void searchPublicFC(){
 
+    Intent i=new Intent(this, SearchPublicFlashcards.class);
+    startActivity(i);
+
+}
 }
 

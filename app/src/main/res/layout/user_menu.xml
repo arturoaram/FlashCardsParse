@@ -30,6 +30,7 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:text="@string/Search_Public_Flashcards"
+        android:onClick="searchPublicFC"
         android:id="@+id/searchPublicFlashcardsBtn"
         android:layout_above="@+id/matchingGameBtn"
         android:layout_alignLeft="@+id/matchingGameBtn"
