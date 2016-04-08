@@ -84,23 +84,8 @@ public class SetTitleofFC extends Activity implements AdapterView.OnItemSelected
 
     //goes on ahead and creates new set of cards.
     public void continueToCF(View view) {
-
-//        ParseQuery<ParseObject> query = ParseQuery.getQuery("FlashCard");
-//        query.getInBackground(objectID, new GetCallback<ParseObject>() {
-//            public void done(ParseObject object, ParseException e) {
-//                if (e == null) {
-//
-//                } else {
-//
-//                }
-//            }
-//        });
-
-
-
-
-
         //ParseObject flashCardSet = new ParseObject("SetFC");
+
         flashCardSet.put("Title", title.getText().toString());
         flashCardSet.put("Classname", classnum.getText().toString());
         flashCardSet.put("Subject", subject.getText().toString());
@@ -133,6 +118,12 @@ public class SetTitleofFC extends Activity implements AdapterView.OnItemSelected
             }
         });
 
+    }
+
+    public boolean isEmpty(EditText string){
+        if(string.getText().toString() == "") return true;
+
+        else return false;
     }
 
     //when a school is selected

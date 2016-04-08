@@ -21,7 +21,7 @@ public class LoginandRegisterTab extends TabActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_and_registertab);
 
-sv=(SearchView) findViewById(R.id.searchView);
+   // sv=(SearchView) findViewById(R.id.searchView);
         TabHost tabHost = getTabHost();
 
         TabHost.TabSpec spec;
