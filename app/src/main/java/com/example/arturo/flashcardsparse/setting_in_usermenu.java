@@ -3,20 +3,14 @@ package com.example.arturo.flashcardsparse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.parse.Parse;
-import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.RequestPasswordResetCallback;
 
 /**
  * Created by Owner on 4/3/2016.
@@ -32,6 +26,8 @@ public class setting_in_usermenu extends AppCompatActivity {
     ParseUser userP=ParseUser.getCurrentUser();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.settings);
 
         newPwd=(EditText)findViewById(R.id.enternewpwd);
@@ -47,7 +43,6 @@ public class setting_in_usermenu extends AppCompatActivity {
 doNotdisturb.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
       //  setContentView(R.layout.studying_cards);
     }
@@ -57,9 +52,12 @@ doNotdisturb.setOnClickListener(new View.OnClickListener() {
       saveButton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              if(oldPwd.getText().toString().equals(userP.getString("Password"))){
+              if(oldPwd.getText().toString().equals(userP.get("Password").toString())){
                   userP.setPassword(newPwd.getText().toString());
+                  Log.e("something jade made:"," IT WORKS!!!!");
               }
+              else
+                  Log.e("somethingjademade ","Never do this again!");
 
           }
       });
@@ -67,6 +65,8 @@ doNotdisturb.setOnClickListener(new View.OnClickListener() {
 Logout.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        Intent i = new Intent(getApplicationContext(),LoginandRegisterTab.class);
+        startActivity(i);
         ParseUser.logOut();
     }
 });

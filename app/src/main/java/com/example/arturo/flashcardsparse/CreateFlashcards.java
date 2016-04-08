@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -49,8 +50,12 @@ public class CreateFlashcards extends AppCompatActivity {
     FlashCard flashCard;
     String id;
     ParseObject pObject;
+    public static float screen_width;
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_flashcards);
 
@@ -58,6 +63,10 @@ public class CreateFlashcards extends AppCompatActivity {
 
         if (id!=null)
         Log.d("THIS IS YOUR ID: ", id);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        screen_width = metrics.widthPixels;
 
         term = (EditText) findViewById(R.id.editText);
         definition = (EditText) findViewById(R.id.editText2);
@@ -99,6 +108,21 @@ public class CreateFlashcards extends AppCompatActivity {
                     }
                 });
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                float scale =  com.example.arturo.flashcardsparse.CreateFlashcards.screen_width / view.getWidth();
+//                if(view.getScaleX() == 1) {
+//
+//                    view.setScaleY(scale);
+//                    view.setScaleX(scale);
+//                }else{
+//                    view.setScaleY(1);
+//                    view.setScaleX(1);
+//                }
+            }
+        });
+
         Toast toast = Toast.makeText(getApplicationContext(),
                 "Every Time you press add, It will clear the fields and add the FlashCard to your set, Keep pressing Add for more FlashCards",
                 Toast.LENGTH_LONG);
@@ -109,6 +133,8 @@ public class CreateFlashcards extends AppCompatActivity {
 
     public void addToDB(View view) {
 
+
+        if(!isEmpty(term) && !isEmpty(definition)){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("SetFC");
         query.getInBackground(id, new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
@@ -147,21 +173,27 @@ public class CreateFlashcards extends AppCompatActivity {
                     Log.d("Parse Object: ", "It has no object inside");
                 }
             }
-        });
+        });}
+
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Either the Term or Definition field is empty",Toast.LENGTH_SHORT);
+            toast.show();}
+
 
 
     }
 
     public void doneBtn(View view) {
 
-//        Intent i = new Intent(this, UserMenu.class);
-//        startActivity(i);
-        finish();
+        Intent i = new Intent(this, UserMenu.class);
+        startActivity(i);
+        //finish();
 
     }
 
     public boolean isEmpty(EditText string){
-        if(string.getText().toString() == "") return true;
+        if(string.getText().toString().length() == 0) return true;
 
         else return false;
     }

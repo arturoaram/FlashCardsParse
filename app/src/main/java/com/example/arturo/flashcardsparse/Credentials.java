@@ -64,8 +64,6 @@ public class Credentials extends Activity {
                 public void done(ParseUser user, ParseException e) {
                     if (user != null) {
                         Intent intent = new Intent(getApplicationContext(),UserMenu.class);
-                        intent.putExtra("USERNAME",usernameEditText.getText().toString());
-                        intent.putExtra("PASSWORD",passwordEditText.getText().toString());
                         startActivity(intent);
 
                     } else {

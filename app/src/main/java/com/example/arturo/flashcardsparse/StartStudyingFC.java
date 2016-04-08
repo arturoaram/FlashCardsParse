@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,17 @@ public class StartStudyingFC extends Activity
 
         ListViewAdapter cs= new ListViewAdapter(createList(5));
         recList.setAdapter(cs);
+
+
+        //recList.setClick
+        recList.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Log.d("Can we see this?","YES!!!!!!!");
+            }
+
+        });Log.e("Can we see this?", "no!!!!!!!");
     }
 
     private List<FlashCard> createList(int size){
