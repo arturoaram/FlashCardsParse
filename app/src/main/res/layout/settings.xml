@@ -34,16 +34,38 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To change Password press the Reset Button."
+        android:text="To change Password enter old password then new password"
         android:id="@+id/tvforpwd"
         android:textSize="20sp"
         android:layout_centerVertical="true" />
 
-    <Button
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset Password"
-        android:id="@+id/resetBtn"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/enteroldpwd"
         android:layout_below="@+id/tvforpwd"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:hint="Enter old Password" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/enternewpwd"
+        android:layout_below="@+id/enteroldpwd"
+        android:layout_alignParentStart="true"
+        android:hint="Enter new Password" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/savePwdbtn"
+        android:layout_below="@+id/enternewpwd"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

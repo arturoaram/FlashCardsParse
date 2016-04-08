@@ -12,7 +12,7 @@ import android.widget.ListView;
  */
 public class SearchPublicFlashcards extends AppCompatActivity {
 
-SearchView searchView;
+SearchView searchView2;
     ListView listView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,7 @@ SearchView searchView;
 
         listView=(ListView)findViewById(R.id.listView2);
         //SearchManager searchManager=(SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView=(SearchView) findViewById(R.id.searchView2);
+        searchView2=(SearchView) findViewById(R.id.searchView2);
 
     }
 

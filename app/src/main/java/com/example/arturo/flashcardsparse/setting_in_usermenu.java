@@ -22,34 +22,24 @@ public class setting_in_usermenu extends AppCompatActivity {
 
 
     Button Logout;
-    Button resetButton;
+    Button saveButton;
+    EditText newPwd;
+    EditText oldPwd;
     ImageButton doNotdisturb;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-
+        newPwd=(EditText)findViewById(R.id.newpwd);
+        oldPwd=(EditText)findViewById(R.id.oldpwd);
         Logout=(Button)findViewById(R.id.logOutButton);
-        resetButton=(Button)findViewById(R.id.resetBtn);
-
+        saveButton=(Button)findViewById(R.id.savePwdbtn);
+        doNotdisturb =(ImageButton)findViewById(R.id.doNotdistubBTN);
         setTitle("Settings");
 
 
 
-resetButton.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        ParseUser.requestPasswordResetInBackground("myemail@example.com", new RequestPasswordResetCallback() {
-            public void done(ParseException e) {
-                if (e == null) {
-                    // An email was successfully sent with reset instructions.
-                } else {
-                    // Something went wrong. Look at the ParseException to see what's up.
-                }
-            }
-        });
-    }
-});
+
 
 
 
