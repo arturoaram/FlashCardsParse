@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -86,42 +87,50 @@ public class SetTitleofFC extends Activity implements AdapterView.OnItemSelected
     public void continueToCF(View view) {
         //ParseObject flashCardSet = new ParseObject("SetFC");
 
-        flashCardSet.put("Title", title.getText().toString());
-        flashCardSet.put("Classname", classnum.getText().toString());
-        flashCardSet.put("Subject", subject.getText().toString());
-        flashCardSet.put("School", schools.getSelectedItem().toString());
-        flashCardSet.put("Public", statusCards.isChecked());
-        flashCardSet.put("Parent", currentUser);
-
-        flashCardSet.saveInBackground();
-
-        flashCardSet.fetchInBackground(new GetCallback<ParseObject>() {
+        if (!isEmpty(title) && !isEmpty(classnum) && !isEmpty(subject)) {
 
 
-            @Override
-            public void done(ParseObject parseObject, ParseException e) {
-                if (e == null) {
-                    // Saved successfully.
-                    Log.d("MY STUPID ASS OBJECT ID", "User update saved!");
-                    final String s = parseObject.getObjectId().toString();
-                    Log.d("MY STUPID ASS OBJECT ID", "The object id is: " + s);
-                    //x = s;
-                    Intent i = new Intent(getApplicationContext(), CreateFlashcards.class);
-                    //Log.e("HOLAAAAAAAAAAAA: ", "WOW QUE MALDITA MOVIE"+x + "Hola");
-                    i.putExtra("ID", s);
-                    startActivity(i);
-                } else {
-                    // The save failed.
-                    Log.d("MY STUPID ASS OBJECT ID", "User update error: " + e);
+            flashCardSet.put("Title", title.getText().toString());
+            flashCardSet.put("Classname", classnum.getText().toString());
+            flashCardSet.put("Subject", subject.getText().toString());
+            flashCardSet.put("School", schools.getSelectedItem().toString());
+            flashCardSet.put("Public", statusCards.isChecked());
+            flashCardSet.put("Parent", currentUser);
+
+            flashCardSet.saveInBackground();
+
+            flashCardSet.fetchInBackground(new GetCallback<ParseObject>() {
+
+
+                @Override
+                public void done(ParseObject parseObject, ParseException e) {
+                    if (e == null) {
+                        // Saved successfully.
+                        Log.d("MY STUPID ASS OBJECT ID", "User update saved!");
+                        final String s = parseObject.getObjectId().toString();
+                        Log.d("MY STUPID ASS OBJECT ID", "The object id is: " + s);
+                        //x = s;
+                        Intent i = new Intent(getApplicationContext(), CreateFlashcards.class);
+                        //Log.e("HOLAAAAAAAAAAAA: ", "WOW QUE MALDITA MOVIE"+x + "Hola");
+                        i.putExtra("ID", s);
+                        startActivity(i);
+                    } else {
+                        // The save failed.
+                        Log.d("MY STUPID ASS OBJECT ID", "User update error: " + e);
+                    }
+
                 }
-
-            }
-        });
+            });
+        }
+        else{
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Do not leave anything empty!",Toast.LENGTH_SHORT);
+        toast.show();}
 
     }
 
     public boolean isEmpty(EditText string){
-        if(string.getText().toString() == "") return true;
+        if(string.getText().toString().length() == 0) return true;
 
         else return false;
     }
