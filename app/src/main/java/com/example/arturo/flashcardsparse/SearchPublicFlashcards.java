@@ -1,7 +1,5 @@
 package com.example.arturo.flashcardsparse;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -12,7 +10,7 @@ import android.widget.ListView;
  */
 public class SearchPublicFlashcards extends AppCompatActivity {
 
-SearchView searchView;
+    SearchView searchView;
     ListView listView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +21,7 @@ SearchView searchView;
 
         listView=(ListView)findViewById(R.id.listView2);
         //SearchManager searchManager=(SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView=(SearchView) findViewById(R.id.searchView2);
+        //searchView=(SearchView) findViewById(R.id.searchView2);
 
     }
 

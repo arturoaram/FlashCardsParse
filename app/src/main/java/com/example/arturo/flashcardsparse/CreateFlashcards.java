@@ -130,9 +130,7 @@ public class CreateFlashcards extends AppCompatActivity {
                                 "FlashCard added",
                                 Toast.LENGTH_SHORT);
                         toastInner.show();
-                    }
-                    else
-                    {
+                    } else {
                         flashCard = new FlashCard(term.getText().toString(),
                                 definition.getText().toString());
                         flashCard.add(object);
@@ -160,6 +158,12 @@ public class CreateFlashcards extends AppCompatActivity {
 //        startActivity(i);
         finish();
 
+    }
+
+    public boolean isEmpty(EditText string){
+        if(string.getText().toString() == "") return true;
+
+        else return false;
     }
 
 
