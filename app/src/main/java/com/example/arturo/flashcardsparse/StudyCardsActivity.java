@@ -6,15 +6,25 @@ import android.os.Bundle;
 import android.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Owner on 4/1/2016.
  */
 public class StudyCardsActivity extends Activity {
-
+    List<ParseObject> fcSets;
+    ArrayList<FlashCardsSet> arFlashCardsSet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cardviewpager);
+
+
+
 
         FCardAdapter adapter = new FCardAdapter(getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
@@ -36,4 +46,16 @@ public class StudyCardsActivity extends Activity {
             return 30;
         }
     }
+
+
+//    private List<FlashCard> createList(int size, List<ParseObject> fcList){
+//        List<FlashCard> result=new ArrayList<FlashCard>();
+//        size = size-1;
+//        for(int i=0;i<=size;i++){
+//
+//            FlashCard co=new FlashCard(fcList.get(i).get("term").toString(),fcList.get(i).get("description").toString());
+//            result.add(co);
+//        }
+//        return result;
+//    }
 }

@@ -80,6 +80,7 @@ public class UsersFlashcardSets extends AppCompatActivity {
                             Log.d("MY FLASHCARDSSSSSSSS", "Retrieved " + FlashCardsList.size() + " scores");
                             setContentView(R.layout.display);
                             setTitle(fcSetParse.getString("Title"));
+
                             RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
                             LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
                             llm.setOrientation(LinearLayoutManager.VERTICAL);

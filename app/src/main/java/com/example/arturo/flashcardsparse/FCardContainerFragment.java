@@ -14,7 +14,6 @@ import android.view.ViewGroup;
  */
 public class FCardContainerFragment extends Fragment {
 
-
     private boolean cardFlipped= false;
 
 
@@ -40,16 +39,16 @@ public class FCardContainerFragment extends Fragment {
         inflater.inflate(R.menu.menu_main, menu);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch(item.getItemId()) {
-//            case R.id.action_flip:
-//                flipCard();
-//                return true;
-//        }
-//
-//        return false;
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_flip:
+                flipCard();
+                return true;
+        }
+
+        return false;
+   }
 
     public void flipCard() {
         Fragment newFragment;

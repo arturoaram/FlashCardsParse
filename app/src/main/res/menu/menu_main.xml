@@ -13,8 +13,8 @@
     <!--android:orderInCategory="100"-->
     <!--android:title="Quit"-->
     <!--app:showAsAction="ifRoom"/>-->
-    <!--<item android:id="@+id/action_flip"-->
-        <!--android:title="Flip"-->
-        <!--android:orderInCategory="100"-->
-        <!--app:showAsAction="ifRoom"/>-->
+    <item android:id="@+id/action_flip"
+        android:title="Flip"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"/>
 </menu>
