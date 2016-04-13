@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -15,7 +20,7 @@ import java.util.List;
 /**
  * Created by Owner on 4/1/2016.
  */
-public class StudyCardsActivity extends Activity {
+public class StudyCardsActivity extends AppCompatActivity {
     List<ParseObject> fcSets;
     ArrayList<FlashCardsSet> arFlashCardsSet;
     @Override
@@ -24,19 +29,26 @@ public class StudyCardsActivity extends Activity {
         setContentView(R.layout.cardviewpager);
 
 
+      //  final ParseObject fcSetParse = fcSets.get(i);
+        //  FlashCardsSet fcSet = arFlashCardsSet.get(i);
+
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("FlashCard");
+//        query.whereEqualTo("Parent", fcSetParse);
+//        query.findInBackground(new FindCallback<ParseObject>() {
+//            public void done(List<ParseObject> FlashCardsList, ParseException e) {
+//                if (e == null) {
+//                    Log.d("MY FLASHCARDSSSSSSSS", "Retrieved " + FlashCardsList.size() + " scores");
 
 
-       FCardAdapter adapter = new FCardAdapter(getFragmentManager());
+                    FCardAdapter adapter = new FCardAdapter(getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
        viewPager.setAdapter(adapter);
 
-      //  ListViewAdapter cs = new ListViewAdapter(createList(FlashCardsList.size(),FlashCardsList));
-    //    viewPager.setAdapter(cs);
 
     }
 
 
-    public class FCardAdapter extends android.support.v13.app.FragmentPagerAdapter{
+ public   class FCardAdapter extends android.support.v13.app.FragmentPagerAdapter{
 
 
         public FCardAdapter(FragmentManager fm){

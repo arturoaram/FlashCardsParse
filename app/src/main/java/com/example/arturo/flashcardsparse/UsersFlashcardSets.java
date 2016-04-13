@@ -70,7 +70,7 @@ public class UsersFlashcardSets extends AppCompatActivity {
                 //startActivity(intent);
 
                 final ParseObject fcSetParse = fcSets.get(i);
-                FlashCardsSet fcSet = arFlashCardsSet.get(i);
+              //  FlashCardsSet fcSet = arFlashCardsSet.get(i);
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("FlashCard");
                 query.whereEqualTo("Parent", fcSetParse);
