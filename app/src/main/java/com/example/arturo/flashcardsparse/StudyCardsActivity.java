@@ -26,9 +26,13 @@ public class StudyCardsActivity extends Activity {
 
 
 
-        FCardAdapter adapter = new FCardAdapter(getFragmentManager());
+       FCardAdapter adapter = new FCardAdapter(getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        viewPager.setAdapter(adapter);
+       viewPager.setAdapter(adapter);
+
+      //  ListViewAdapter cs = new ListViewAdapter(createList(FlashCardsList.size(),FlashCardsList));
+    //    viewPager.setAdapter(cs);
+
     }
 
 
@@ -58,4 +62,33 @@ public class StudyCardsActivity extends Activity {
 //        }
 //        return result;
 //    }
+
+//
+//    public List<FlashCardsSet> parseObjectToFlashCardSetConverter(List<ParseObject> list){
+//        List<FlashCardsSet> lFC = new ArrayList<FlashCardsSet>();
+//        FlashCardsSet fcObject;
+//        if(list!=null){
+//            for(ParseObject po : list){
+//                if(po!=null){
+//                    fcObject = new FlashCardsSet(po);
+//                    lFC.add(fcObject);
+//                }
+//            }
+//        }
+//        return lFC;
+//    }
+//
+//    private List<FlashCard> createList(int size, List<ParseObject> fcList){
+//        List<FlashCard> result=new ArrayList<FlashCard>();
+//        size = size-1;
+//        for(int i=0;i<=size;i++){
+//
+//            FlashCard co=new FlashCard(fcList.get(i).get("term").toString(),fcList.get(i).get("description").toString());
+//            result.add(co);
+//        }
+//        return result;
+//    }
+//
+
+
 }

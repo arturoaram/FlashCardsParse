@@ -2,32 +2,10 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#3edcd7">
 
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/incorrectCounter"
-
-        android:text="0"
-        android:layout_marginLeft="99dp"
-        android:layout_marginStart="99dp"
-        android:layout_alignTop="@+id/correctCounter"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/correctCounter"
-        android:text="0"
-        android:layout_marginRight="75dp"
-        android:layout_marginEnd="75dp"
-        android:layout_above="@+id/cardsview"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="52dp" />
-<android.support.v7.widget.CardView
+    <android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="350dp"
@@ -36,13 +14,13 @@
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="20dp"
     android:paddingStart="300dp"
-    android:paddingLeft="30dp"
-    android:paddingRight="300dp"
+
     android:paddingEnd="300dp"
-    android:layout_marginBottom="70dp"
     android:padding="300dp"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
 
     <TextView
         android:layout_width="wrap_content"
