@@ -2,12 +2,16 @@ package com.example.arturo.flashcardsparse;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -23,11 +27,15 @@ import java.util.List;
 public class StudyCardsActivity extends AppCompatActivity {
     List<ParseObject> fcSets;
     ArrayList<FlashCardsSet> arFlashCardsSet;
+    Button Correct, Incorrect;
+    int correctNUM=0;
+    int incorrectNum=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cardviewpager);
-
+        Correct=(Button)findViewById(R.id.correctbtn);
+        Incorrect=(Button)findViewById(R.id.incorrectbtn);
 
       //  final ParseObject fcSetParse = fcSets.get(i);
         //  FlashCardsSet fcSet = arFlashCardsSet.get(i);
@@ -38,9 +46,29 @@ public class StudyCardsActivity extends AppCompatActivity {
 //            public void done(List<ParseObject> FlashCardsList, ParseException e) {
 //                if (e == null) {
 //                    Log.d("MY FLASHCARDSSSSSSSS", "Retrieved " + FlashCardsList.size() + " scores");
+Correct.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
 
 
-                    FCardAdapter adapter = new FCardAdapter(getFragmentManager());
+  correctNUM++;
+        Correct.setText(correctNUM);
+    }
+});
+        Incorrect.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+        incorrectNum++;
+                Incorrect.setText(incorrectNum);
+
+
+            }
+        });
+
+
+
+        FCardAdapter adapter = new FCardAdapter(getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
        viewPager.setAdapter(adapter);
 

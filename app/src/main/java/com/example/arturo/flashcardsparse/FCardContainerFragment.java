@@ -2,10 +2,13 @@ package com.example.arturo.flashcardsparse;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.view.MotionEventCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,10 +17,10 @@ import android.view.ViewGroup;
  */
 public class FCardContainerFragment extends Fragment {
 
-    private boolean cardFlipped= false;
+    private boolean cardFlipped = false;
 
 
-    public FCardContainerFragment(){
+    public FCardContainerFragment() {
 
         setHasOptionsMenu(true);
     }
@@ -41,14 +44,14 @@ public class FCardContainerFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.action_flip:
                 flipCard();
                 return true;
         }
 
         return false;
-   }
+    }
 
     public void flipCard() {
         Fragment newFragment;
@@ -71,19 +74,22 @@ public class FCardContainerFragment extends Fragment {
 
     public static class CardFrontFragment extends Fragment {
 
-        public CardFrontFragment() { }
+        public CardFrontFragment() {
+        }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.study_cards, container, false);
             return rootView;
+
         }
     }
 
     public static class CardBackFragment extends Fragment {
 
-        public CardBackFragment() { }
+        public CardBackFragment() {
+        }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,4 +98,8 @@ public class FCardContainerFragment extends Fragment {
             return rootView;
         }
     }
+
+    private static final String DEBUG_TAG = "Gestures";
+
+
 }
