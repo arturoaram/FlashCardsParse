@@ -1,18 +1,12 @@
 package com.example.arturo.flashcardsparse;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.os.Bundle;
 import android.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +16,16 @@ import java.util.List;
  */
 public class StudyCardsActivity extends AppCompatActivity {
     List<ParseObject> fcSets;
+    List<FlashCard> FCList;
     ArrayList<FlashCardsSet> arFlashCardsSet;
+    int index;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cardviewpager);
-
+        Bundle bundle = getIntent().getExtras();
+        FCList = (List<FlashCard>)bundle.getSerializable("list");
+        index = bundle.getInt("index");
 
       //  final ParseObject fcSetParse = fcSets.get(i);
         //  FlashCardsSet fcSet = arFlashCardsSet.get(i);
@@ -38,11 +36,9 @@ public class StudyCardsActivity extends AppCompatActivity {
 //            public void done(List<ParseObject> FlashCardsList, ParseException e) {
 //                if (e == null) {
 //                    Log.d("MY FLASHCARDSSSSSSSS", "Retrieved " + FlashCardsList.size() + " scores");
-
-
-                    FCardAdapter adapter = new FCardAdapter(getFragmentManager());
+        FCardAdapter adapter = new FCardAdapter(getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-       viewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
 
 
     }
@@ -55,11 +51,11 @@ public class StudyCardsActivity extends AppCompatActivity {
             super(fm);
         }
         public Fragment getItem(int i){
-            return new FCardContainerFragment();
+            return new FCardContainerFragment(FCList,i,index);
         }
 
         public int getCount(){
-            return 30;
+            return FCList.size();
         }
     }
 

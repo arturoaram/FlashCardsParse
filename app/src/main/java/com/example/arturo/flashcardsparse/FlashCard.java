@@ -8,11 +8,12 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
 
 /**
  * Created by Arturo on 3/12/2016.
  */
-public class FlashCard {
+public class FlashCard implements Serializable{
     protected String term;
     protected String definition;
     protected ImageView img;

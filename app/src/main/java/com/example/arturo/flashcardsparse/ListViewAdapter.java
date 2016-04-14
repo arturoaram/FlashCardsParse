@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -69,9 +70,12 @@ private Context context;
         @Override
         public void onClick(View v) {
 
-            Log.e("where are you going?","not here");
+            Log.e("where are you going?", "not here");
             Toast.makeText(context,"The Item Clicked is: "+getPosition(),Toast.LENGTH_SHORT).show();
        Intent i = new Intent(context, StudyCardsActivity.class);
+            i.putExtra("list", (Serializable) cardListt);
+            i.putExtra("index",getPosition());
+
           context.startActivity(i);
         }
     }

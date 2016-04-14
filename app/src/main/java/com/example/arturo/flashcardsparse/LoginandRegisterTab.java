@@ -21,13 +21,13 @@ public class LoginandRegisterTab extends TabActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_and_registertab);
 
-    sv=(SearchView) findViewById(R.id.searchView);
-        sv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             setContentView(R.layout.search_public_flashcards);
-            }
-        });
+//    sv=(SearchView) findViewById(R.id.searchView);
+//        sv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//             setContentView(R.layout.search_public_flashcards);
+//            }
+//        });
 
         TabHost tabHost = getTabHost();
 
