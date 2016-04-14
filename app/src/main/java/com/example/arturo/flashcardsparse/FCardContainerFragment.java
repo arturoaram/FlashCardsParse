@@ -8,26 +8,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * Created by Owner on 4/1/2016.
  */
 public class FCardContainerFragment extends Fragment {
 
-
     private boolean cardFlipped= false;
 
 
     public FCardContainerFragment(){
-
 
         setHasOptionsMenu(true);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.frag_container, container, false);
 
         getChildFragmentManager()
@@ -75,16 +71,12 @@ public class FCardContainerFragment extends Fragment {
 
     public static class CardFrontFragment extends Fragment {
 
-        public CardFrontFragment() {
-             }
+        public CardFrontFragment() { }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
             View rootView = inflater.inflate(R.layout.study_cards, container, false);
-            TextView tv = (TextView) rootView.findViewById(R.id.termCard);
-            tv.setText("HOLAAAAAAAAAAAAAAAAAAA");
             return rootView;
         }
     }
