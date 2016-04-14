@@ -14,20 +14,24 @@
     android:background="#e5f538">
 
 
-
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/ImageC"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:text="@string/Term"
         android:gravity="center_horizontal"
-        android:background="#ffe600"
-        android:id="@+id/termC" />
+        android:id="@+id/termC"
+        android:textSize="30dp"/>
     <TextView
-         android:layout_width="match_parent"
-         android:layout_height="200dp"
-         android:text="@string/Definition"
-         android:gravity="center"
-         android:id="@+id/definitionC" />
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="@string/Definition"
+        android:gravity="center"
+        android:id="@+id/definitionC" />
+
 
 </android.support.v7.widget.CardView>
 

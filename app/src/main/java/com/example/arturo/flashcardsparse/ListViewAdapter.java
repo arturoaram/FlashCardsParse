@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +34,15 @@ private Context context;
 
     @Override
     public void onBindViewHolder(ListViewAdapter.FlashcardViewHolder holder, int position) {
-            FlashCard fc= cardListt.get(position);
+        FlashCard fc= cardListt.get(position);
         holder.vTerm.setText(fc.term);
         holder.vDefinition.setText(fc.definition);
+        if (fc.bp !=null) {
+
+            holder.vImage.setImageBitmap(fc.bp);
+            //holder.vImage.set
+        }
+        //holder.vImage.setImageResource();
 
     }
 
@@ -47,12 +54,14 @@ private Context context;
 
         protected TextView vTerm;
         protected TextView vDefinition;
+        protected ImageView vImage;
 
         public FlashcardViewHolder(View v){
             super(v);
             context=v.getContext();
             vTerm=(TextView)v.findViewById(R.id.termC);
             vDefinition=(TextView)v.findViewById(R.id.definitionC);
+            vImage = (ImageView)v.findViewById(R.id.ImageC);
             v.setClickable(true);
             v.setOnClickListener(this);
         }

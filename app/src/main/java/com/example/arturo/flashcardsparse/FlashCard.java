@@ -1,6 +1,7 @@
 package com.example.arturo.flashcardsparse;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.parse.ParseFile;
@@ -15,6 +16,7 @@ public class FlashCard {
     protected String term;
     protected String definition;
     protected ImageView img;
+    protected Bitmap bp;
 
     protected static final String TERM_PREFIX = "Term_";
     protected static final String DEFINITION_PREFIX = "Definition_";
@@ -23,6 +25,11 @@ public class FlashCard {
         term = n;
         definition = d;
         img = i;
+    }
+    public FlashCard(String n, String d, Bitmap p) {
+        term = n;
+        definition = d;
+        bp = p;
     }
 
     public FlashCard(String n, String d) {
@@ -54,15 +61,10 @@ public class FlashCard {
         return img;
     }
 
-    public void add(ParseObject PO) {
+    public void addBitmap(ParseObject PO) {
 
-        if (img != null) {
-
-            img.setDrawingCacheEnabled(true);
-            img.buildDrawingCache();
-            Bitmap bm = img.getDrawingCache();
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            bp.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] data = stream.toByteArray();
 
             ParseFile file = new ParseFile("hola.png", data);
@@ -74,15 +76,20 @@ public class FlashCard {
             flashCard.put("picture",file);
             flashCard.put("Parent",PO);
             flashCard.saveInBackground();
-        }
+            Log.e("AQUI HAY FOTO? ","SI HAY FOTO");
 
-        else{
+
+
+
+    }
+    public void add(ParseObject PO) {
+
             ParseObject flashCard = new ParseObject("FlashCard");
             flashCard.put("term" , getTerm());
             flashCard.put("description", getDefinition());
             flashCard.put("Parent",PO);
             flashCard.saveInBackground();
-        }
+            Log.e("AQUI HAY FOTO? ", "NO HAY FOTO");
 
     }
 

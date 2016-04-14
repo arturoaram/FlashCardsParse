@@ -1,6 +1,8 @@
 package com.example.arturo.flashcardsparse;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -31,12 +36,15 @@ public class UsersFlashcardSets extends AppCompatActivity {
     private List<SetsFC> setsList = null;
     ParseUser user;
     List<ParseObject> fcSets;
+    ImageView imageView;
+    String h = "hola";
+    List<FlashCard> result;
     //Context context= getApplicationContext();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.users_fcsets);
-        setTitle(user.getCurrentUser().getString("Name")+"'s Flashcard Sets");
+        setTitle(user.getCurrentUser().getString("Name") + "'s Flashcard Sets");
 
         listview = (ListView) findViewById(R.id.listView);
 
@@ -70,7 +78,7 @@ public class UsersFlashcardSets extends AppCompatActivity {
                 //startActivity(intent);
 
                 final ParseObject fcSetParse = fcSets.get(i);
-              //  FlashCardsSet fcSet = arFlashCardsSet.get(i);
+                //  FlashCardsSet fcSet = arFlashCardsSet.get(i);
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("FlashCard");
                 query.whereEqualTo("Parent", fcSetParse);
@@ -86,7 +94,12 @@ public class UsersFlashcardSets extends AppCompatActivity {
                             llm.setOrientation(LinearLayoutManager.VERTICAL);
                             recList.setLayoutManager(llm);
 
-                            ListViewAdapter cs = new ListViewAdapter(createList(FlashCardsList.size(),FlashCardsList));
+                            ListViewAdapter cs = null;
+                            try {
+                                cs = new ListViewAdapter(createList(FlashCardsList.size(), FlashCardsList));
+                            } catch (ParseException e1) {
+                                e1.printStackTrace();
+                            }
                             recList.setAdapter(cs);
 
 
@@ -162,7 +175,7 @@ public class UsersFlashcardSets extends AppCompatActivity {
             // Binds the Adapter to the ListView
 //            listview.setAdapter(adapter);
             // Close the progressdialog
-           // mProgressDialog.dismiss();
+            // mProgressDialog.dismiss();
 
             // Capture button clicks on ListView items
 //          listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -183,29 +196,65 @@ public class UsersFlashcardSets extends AppCompatActivity {
         }
     }
 
-    public List<FlashCardsSet> parseObjectToFlashCardSetConverter(List<ParseObject> list){
+    public List<FlashCardsSet> parseObjectToFlashCardSetConverter(List<ParseObject> list) {
         List<FlashCardsSet> lFC = new ArrayList<FlashCardsSet>();
         FlashCardsSet fcObject;
-        if(list!=null){
-        for(ParseObject po : list){
-            if(po!=null){
-            fcObject = new FlashCardsSet(po);
-                lFC.add(fcObject);
+        if (list != null) {
+            for (ParseObject po : list) {
+                if (po != null) {
+                    fcObject = new FlashCardsSet(po);
+                    lFC.add(fcObject);
+                }
             }
-        }
         }
         return lFC;
     }
 
-    private List<FlashCard> createList(int size, List<ParseObject> fcList){
-        List<FlashCard> result=new ArrayList<FlashCard>();
-        size = size-1;
-        for(int i=0;i<=size;i++){
+    private List<FlashCard> createList(int size, final List<ParseObject> fcList) throws ParseException {
+        result = new ArrayList<FlashCard>();
 
-            FlashCard co=new FlashCard(fcList.get(i).get("term").toString(),fcList.get(i).get("description").toString());
-            result.add(co);
+        size = size - 1;
+        for (int i = 0; i <= size; i++) {
+            final int a = i;
+            if (fcList.get(i).get("picture") == null) {
+                FlashCard co = new FlashCard(fcList.get(i).get("term").toString(), fcList.get(i).get("description").toString());
+                result.add(co);
+                Log.d("Hola", "It went here Sorry");
+            } else {
+
+                ParseFile image = (ParseFile) fcList.get(i).get("picture");
+                //Bitmap bmp= bytesOfObject(image);
+                byte[] bitmapdata = image.getData();
+                //loadBytes(image,imageView);
+                Bitmap bmp = BitmapFactory.decodeByteArray(bitmapdata,0,bitmapdata.length);
+                FlashCard co = new FlashCard(fcList.get(a).get("term").toString(), fcList.get(a).get("description").toString(), bmp);
+                result.add(co);
+
+            }
         }
         return result;
+    }
+
+    public void loadBytes(ParseFile image, final ImageView IV) {
+        byte[] bito;
+        image.getDataInBackground(new GetDataCallback() {
+            @Override
+            public void done(byte[] bytes, ParseException e) {
+                if(e==null){
+                Log.d("Hola", "IS THIS SHOWING?");
+                h = bytes.toString();
+                Log.d("AAAAAAAAA:  ", h);
+                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                h=bmp.toString();
+                Log.d("BMP VALUE:", h);
+                //IV.setImageBitmap(bmp);
+                }
+                else{}
+            }
+
+
+        });
+        Log.d("BMP VALUE:", h);
     }
 }
 

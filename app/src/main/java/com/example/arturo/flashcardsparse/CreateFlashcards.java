@@ -51,6 +51,7 @@ public class CreateFlashcards extends AppCompatActivity {
     String id;
     ParseObject pObject;
     public static float screen_width;
+    Bitmap bitmap;
 
 
 
@@ -139,18 +140,21 @@ public class CreateFlashcards extends AppCompatActivity {
         query.getInBackground(id, new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 if (e == null) {
+                    bitmap = imageView.getDrawingCache();
 
                     Log.d("Parse Object: ", "YOU HAVE THE OBJECT");
-                    if (imageView != null) {
+                    if (bitmap !=null) {
                         flashCard = new FlashCard(term.getText().toString(),
                                 definition.getText().toString(),
-                                imageView);
+                                bitmap);
 
-                        flashCard.add(object);
+                        flashCard.addBitmap(object);
                         //clears the term and definition for next
                         term.getText().clear();
                         definition.getText().clear();
-                        imageView.setImageResource(android.R.color.transparent);
+                        imageView.setImageBitmap(null);
+                        bitmap.recycle();
+                        //imageView.
 
                         Toast toastInner = Toast.makeText(getApplicationContext(),
                                 "FlashCard added",
@@ -163,6 +167,8 @@ public class CreateFlashcards extends AppCompatActivity {
                         //clears the term and definition for next
                         term.getText().clear();
                         definition.getText().clear();
+                        //imageView.setImageBitmap(null);
+                        //bitmap.recycle();
 
                         Toast toastInner = Toast.makeText(getApplicationContext(),
                                 "FlashCard added",
