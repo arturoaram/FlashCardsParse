@@ -2,9 +2,18 @@ package com.example.arturo.flashcardsparse;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
+import android.view.Surface;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.Toast;
 
 import com.parse.ParseObject;
 
@@ -19,23 +28,46 @@ public class StudyCardsActivity extends AppCompatActivity {
     List<FlashCard> FCList;
     ArrayList<FlashCardsSet> arFlashCardsSet;
     int index;
+    int increaseNum=0;
+    Button correct,incorrect;
+    Chronometer chronometer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cardviewpager);
+
+        ButtonAction testListener=new ButtonAction();
+    ButtonAction2   testListener2=new ButtonAction2();
+        correct=(Button)findViewById(R.id.correctbtn);
+        correct.setOnClickListener(testListener);
+        correct.setOnFocusChangeListener(testListener);
+
+        incorrect=(Button)findViewById(R.id.incorrectbtn);
+        incorrect.setOnClickListener(testListener2);
+        chronometer=(Chronometer)findViewById(R.id.chronometer);
+        chronometer.start();
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+           @Override
+           public void onChronometerTick(Chronometer chronometer) {
+               String ct=chronometer.getText().toString();
+
+               if(ct.equals("05:00")){
+                   chronometer.stop();
+                   Toast toast = Toast.makeText(getApplicationContext(),
+                           "The timer has stopped! Did you get many correct?", Toast.LENGTH_LONG);
+                   toast.show();
+               }
+           }
+       });
+
+
+
+
         Bundle bundle = getIntent().getExtras();
         FCList = (List<FlashCard>)bundle.getSerializable("list");
         index = bundle.getInt("index");
 
-      //  final ParseObject fcSetParse = fcSets.get(i);
-        //  FlashCardsSet fcSet = arFlashCardsSet.get(i);
 
-//        ParseQuery<ParseObject> query = ParseQuery.getQuery("FlashCard");
-//        query.whereEqualTo("Parent", fcSetParse);
-//        query.findInBackground(new FindCallback<ParseObject>() {
-//            public void done(List<ParseObject> FlashCardsList, ParseException e) {
-//                if (e == null) {
-//                    Log.d("MY FLASHCARDSSSSSSSS", "Retrieved " + FlashCardsList.size() + " scores");
         FCardAdapter adapter = new FCardAdapter(getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(adapter);
@@ -44,11 +76,14 @@ public class StudyCardsActivity extends AppCompatActivity {
     }
 
 
- public   class FCardAdapter extends android.support.v13.app.FragmentPagerAdapter{
+
+
+    public   class FCardAdapter extends android.support.v13.app.FragmentPagerAdapter{
 
 
         public FCardAdapter(FragmentManager fm){
             super(fm);
+
         }
         public Fragment getItem(int i){
             return new FCardContainerFragment(FCList,i,index);
@@ -60,6 +95,58 @@ public class StudyCardsActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
+
+    public class ButtonAction2 implements Button.OnClickListener,Button.OnFocusChangeListener{
+
+
+        @Override
+        public void onClick(View v) {
+            increaseNum++;
+            incorrect.setText(""+Integer.toString(increaseNum));
+        }
+
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+
+            if(hasFocus==true){
+
+
+                incorrect.setText("Tap me!");
+            }else{
+
+                incorrect.setText("Out of focus!");
+            }
+        }
+    }
+
+
+
+    public class ButtonAction implements Button.OnClickListener,Button.OnFocusChangeListener{
+
+
+        @Override
+        public void onClick(View v) {
+            increaseNum++;
+            correct.setText(""+Integer.toString(increaseNum));
+        }
+
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+
+            if(hasFocus==true){
+
+
+                correct.setText("Tap me!");
+            }else{
+
+                correct.setText("Out of focus!");
+            }
+        }
+    }
 //    private List<FlashCard> createList(int size, List<ParseObject> fcList){
 //        List<FlashCard> result=new ArrayList<FlashCard>();
 //        size = size-1;
@@ -100,3 +187,5 @@ public class StudyCardsActivity extends AppCompatActivity {
 
 
 }
+
+

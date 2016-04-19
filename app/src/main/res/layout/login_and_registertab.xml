@@ -3,20 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:queryHint="Search Recently Created Flashcards"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp" />
-
-
 
     <TabHost
         android:layout_width="match_parent"
@@ -60,5 +46,15 @@
             </FrameLayout>
         </LinearLayout>
     </TabHost>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Search Public Flashcards"
+        android:onClick="onClick" />
 
 </RelativeLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:configChanges="orientation" android:layout_height="match_parent">
 
 
 
@@ -9,30 +9,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:background="#2dd048"
+        android:background="#fc8c04"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="85dp"
         android:layout_height="80dp"
-        android:text="Correct"
         android:id="@+id/correctbtn"
-        android:layout_marginTop="63dp"
         android:layout_marginRight="01dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+
+        android:layout_below="@+id/chronometer"
+        android:layout_alignParentEnd="true"
+        android:text="Correct" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:text="Incorrect"
+        android:text="@string/Incorrect"
         android:id="@+id/incorrectbtn"
         android:layout_marginLeft="0dp"
         android:layout_alignTop="@+id/correctbtn"
         android:layout_alignParentStart="true" />
+
+    <Chronometer
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/chronometer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp" />
+
+
 
 </RelativeLayout>

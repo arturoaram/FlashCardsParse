@@ -13,7 +13,10 @@
     <string name="Enter_your_Username_and_Password">Enter your username and password:</string>
     <string name="Cancel">Cancel</string>
     <string name="Done">Done</string>
+    <string name="some_text">Display and Filter your cards</string>
     <string name="Add">Add</string>
+    <string name="Correct">Correct</string>
+    <string name="Incorrect">Incorrect</string>
     <string name="Matching_Game">Matching Game</string>
     <string name="Start_Studying">Start Studying</string>
     <string name="Create_Flashcards">Create Flashcards</string>
