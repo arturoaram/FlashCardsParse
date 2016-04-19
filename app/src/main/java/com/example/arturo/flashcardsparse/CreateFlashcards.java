@@ -48,12 +48,14 @@ public class CreateFlashcards extends AppCompatActivity {
     final int SELECT_FILE = 2;
     ImageView imageView;
     TextView CreateFlashcards;
-    FlashCard flashCard;
+    FlashCard FC;
     String id;
-    ParseObject pObject;
+    ParseObject flashCard;
     public static float screen_width;
     Bitmap bitmap;
     ParseObject parseObject;
+    byte[] data;
+    ParseFile file;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +65,8 @@ public class CreateFlashcards extends AppCompatActivity {
 
         id = getIntent().getStringExtra("ID");
 
-        if (id!=null)
-        Log.d("THIS IS YOUR ID: ", id);
+        if (id != null)
+            Log.d("THIS IS YOUR ID: ", id);
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -73,6 +75,7 @@ public class CreateFlashcards extends AppCompatActivity {
         term = (EditText) findViewById(R.id.editText);
         definition = (EditText) findViewById(R.id.editText2);
         imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setImageDrawable(null);
         startCamera2 = (ImageButton) findViewById(R.id.startCamera);
         // final int REQUEST_CA = 3;
 
@@ -113,15 +116,7 @@ public class CreateFlashcards extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                float scale =  com.example.arturo.flashcardsparse.CreateFlashcards.screen_width / view.getWidth();
-//                if(view.getScaleX() == 1) {
-//
-//                    view.setScaleY(scale);
-//                    view.setScaleX(scale);
-//                }else{
-//                    view.setScaleY(1);
-//                    view.setScaleX(1);
-//                }
+
             }
         });
 
@@ -133,81 +128,82 @@ public class CreateFlashcards extends AppCompatActivity {
 
     }
 
-    public void addToDB(View view) {
-
-        if (!isEmpty(term) && !isEmpty(definition)) {
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("SetFC");
-            query.getInBackground(id, new GetCallback<ParseObject>() {
-                public void done(ParseObject object, ParseException e) {
-                    if (e == null) {
-                        parseObject = object.getParseObject("id");
-                        bitmap = imageView.getDrawingCache();
-                        if (bitmap != null) {
-                            flashCard = new FlashCard(term.getText().toString(),
-                                    definition.getText().toString(),
-                                    bitmap);
-                            //flashCard.add(parseObject);
-                            //clears the term and definition for next
-                            term.getText().clear();
-                            definition.getText().clear();
-                            imageView.setImageBitmap(null);
-
-                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                            byte[] data = stream.toByteArray();
-
-                            ParseFile file = new ParseFile("hola.png", data);
-                            file.saveInBackground();
-
-                            ParseObject flashCard = new ParseObject("FlashCard");
-                            flashCard.put("term", term.getText().toString());
-                            flashCard.put("description", definition.getText().toString());
-                            flashCard.put("picture", file);
-                            flashCard.put("Parent", object);
-                            flashCard.saveInBackground();
-                            Log.e("AQUI HAY FOTO? ", "SI HAY FOTO");
-
-                            Toast toastInner = Toast.makeText(getApplicationContext(),
-                                    "FlashCard added",
-                                    Toast.LENGTH_SHORT);
-                            toastInner.show();
-                        } else {
-                            flashCard = new FlashCard(term.getText().toString(),
-                                    definition.getText().toString());
-                            //flashCard.add(parseObject);
-                            //clears the term and definition for next
-                            term.getText().clear();
-                            definition.getText().clear();
-                            imageView.setImageBitmap(null);
-                            //bitmap.recycle();
-
-                            ParseObject flashCard = new ParseObject("FlashCard");
-                            flashCard.put("term" , term.getText().toString());
-                            flashCard.put("description", definition.getText().toString());
-                            flashCard.put("Parent", object);
-                            flashCard.saveInBackground();
-                            Log.e("AQUI HAY FOTO? ", "NO HAY FOTO");
-
-                            Toast toastInner = Toast.makeText(getApplicationContext(),
-                                    "FlashCard added",
-                                    Toast.LENGTH_SHORT);
-                            toastInner.show();
-                        }
-                        //flashCard.addBitmap(object);
+//    public void addToDB(View view) {
 //
-                    } else {
-                        Log.d("Parse Object: ", "It has no object inside");
-                    }
-                }
-
-            });
-
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Either the Term or Definition field is empty", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
+//
+//        if (!isEmpty(term) && !isEmpty(definition)) {
+//            ParseQuery<ParseObject> query = ParseQuery.getQuery("SetFC");
+//            query.getInBackground(id, new GetCallback<ParseObject>() {
+//                public void done(ParseObject object, ParseException e) {
+//                    if (e == null) {
+//                        parseObject = object.getParseObject("id");
+//                        bitmap = imageView.getDrawingCache();
+//                        if (bitmap != null) {
+//                            flashCard = new FlashCard(term.getText().toString(),
+//                                    definition.getText().toString(),
+//                                    bitmap);
+//                            //flashCard.add(parseObject);
+//                            //clears the term and definition for next
+//                            term.getText().clear();
+//                            definition.getText().clear();
+//                            imageView.setImageBitmap(null);
+//
+//                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//                            byte[] data = stream.toByteArray();
+//
+//                            ParseFile file = new ParseFile("hola.png", data);
+//                            file.saveInBackground();
+//
+//                            ParseObject flashCard = new ParseObject("FlashCard");
+//                            flashCard.put("term", term.getText().toString());
+//                            flashCard.put("description", definition.getText().toString());
+//                            flashCard.put("picture", file);
+//                            flashCard.put("Parent", object);
+//                            flashCard.saveInBackground();
+//                            Log.e("AQUI HAY FOTO? ", "SI HAY FOTO");
+//
+//                            Toast toastInner = Toast.makeText(getApplicationContext(),
+//                                    "FlashCard added",
+//                                    Toast.LENGTH_SHORT);
+//                            toastInner.show();
+//                        } else {
+//                            flashCard = new FlashCard(term.getText().toString(),
+//                                    definition.getText().toString());
+//                            //flashCard.add(parseObject);
+//                            //clears the term and definition for next
+//                            term.getText().clear();
+//                            definition.getText().clear();
+//                            imageView.setImageBitmap(null);
+//                            //bitmap.recycle();
+//
+//                            ParseObject flashCard = new ParseObject("FlashCard");
+//                            flashCard.put("term" , term.getText().toString());
+//                            flashCard.put("description", definition.getText().toString());
+//                            flashCard.put("Parent", object);
+//                            flashCard.saveInBackground();
+//                            Log.e("AQUI HAY FOTO? ", "NO HAY FOTO");
+//
+//                            Toast toastInner = Toast.makeText(getApplicationContext(),
+//                                    "FlashCard added",
+//                                    Toast.LENGTH_SHORT);
+//                            toastInner.show();
+//                        }
+//                        //flashCard.addBitmap(object);
+////
+//                    } else {
+//                        Log.d("Parse Object: ", "It has no object inside");
+//                    }
+//                }
+//
+//            });
+//
+//        } else {
+//            Toast toast = Toast.makeText(getApplicationContext(),
+//                    "Either the Term or Definition field is empty", Toast.LENGTH_SHORT);
+//            toast.show();
+//        }
+//    }
 
     public void newAddToDB(View view){
         String s = term.getText().toString();
@@ -217,34 +213,33 @@ public class CreateFlashcards extends AppCompatActivity {
 
 
         if (imageView.getDrawable()!=null && !isEmpty(term) && !isEmpty(definition)) {
+            imageView.setDrawingCacheEnabled(true);
+            imageView.buildDrawingCache();
+            bitmap = imageView.getDrawingCache();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            data = stream.toByteArray();
+
+            FC = new FlashCard(term.getText().toString(),
+                    definition.getText().toString(), bitmap);
+            file = new ParseFile("hola.png", data);
+            //file.saveInBackground();
+
+            flashCard = new ParseObject("FlashCard");
+            flashCard.put("term", FC.getTerm());
+            flashCard.put("description", FC.getDefinition());
+            Log.e("What is this?: ", definition.getText().toString());
+            flashCard.put("picture", file);
 
             ParseQuery<ParseObject> query = ParseQuery.getQuery("SetFC");
             query.getInBackground(id, new GetCallback<ParseObject>() {
                 @Override
                 public void done(ParseObject parseObject, ParseException e) {
-                    imageView.setDrawingCacheEnabled(true);
-                    imageView.buildDrawingCache();
-                    bitmap = imageView.getDrawingCache();
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    byte[] data = stream.toByteArray();
-
-                    FlashCard FC = new FlashCard(term.getText().toString(),
-                            definition.getText().toString(),bitmap);
-
-                    ParseFile file = new ParseFile("hola.png", data);
-                    file.saveInBackground();
-                    ParseObject flashCard = new ParseObject("FlashCard");
-                    String s = term.getText().toString();
-                    flashCard.put("term", FC.getTerm());
-                    Log.e("What is this?: ", s);
-                    flashCard.put("description", FC.getDefinition());
-                    Log.e("What is this?: ", definition.getText().toString());
-                    flashCard.put("picture", file);
                     flashCard.put("Parent", parseObject);
                     flashCard.saveInBackground();
+                    file.cancel();
+                    //imageView.setImageResource(android.R.color.transparent);
                     Log.e("AQUI HAY FOTO? ", "SI HAY FOTO");
-
                     Toast toastInner = Toast.makeText(getApplicationContext(),
                             "FlashCard added",
                             Toast.LENGTH_SHORT);
@@ -252,10 +247,21 @@ public class CreateFlashcards extends AppCompatActivity {
 
                     term.getText().clear();
                     definition.getText().clear();
+
+                    imageView.setImageBitmap(null);
+                    bitmap = null;
+                    data = null;
+                    imageView.setDrawingCacheEnabled(false);
+                    imageView.destroyDrawingCache();
                     imageView.setImageDrawable(null);
+
                 }
             });
 
+
+
+
+            query.clearCachedResult();
             //query.clearCachedResult();
 
 
@@ -299,16 +305,14 @@ public class CreateFlashcards extends AppCompatActivity {
 
 
         }
-        else {Toast toast = Toast.makeText(getApplicationContext(),
+        else {
+            Toast toast = Toast.makeText(getApplicationContext(),
                 "Either the Term or Definition field is empty", Toast.LENGTH_SHORT);
             toast.show();
         }
 
 
     }
-
-
-
 
     public void doneBtn(View view) {
 
@@ -318,8 +322,8 @@ public class CreateFlashcards extends AppCompatActivity {
 
     }
 
-    public boolean isEmpty(EditText string){
-        if(string.getText().toString().length() == 0) return true;
+    public boolean isEmpty(EditText string) {
+        if (string.getText().toString().length() == 0) return true;
 
         else return false;
     }

@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="#700b71">
+    android:background="#700b71"
+    android:onClick="newAddToDB">
 
 
     <EditText
@@ -63,7 +64,7 @@
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
         android:background="#f61111"
-        android:onClick="addToDB"
+        android:onClick="newAddToDB"
         android:layout_alignBottom="@+id/startCamera"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
