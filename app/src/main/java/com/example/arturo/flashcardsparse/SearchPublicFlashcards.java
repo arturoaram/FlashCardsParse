@@ -41,6 +41,7 @@ public class SearchPublicFlashcards extends AppCompatActivity {
     List<ParseObject> fcSets;
     EditText search;
     List<FlashCard> result;
+    String wordSearch="";
 
     ListView listView;
 
@@ -48,7 +49,7 @@ public class SearchPublicFlashcards extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_public_flashcards);
 
-
+        setTitle("Display and Filter your FlashCards");
         listView = (ListView) findViewById(R.id.listView2);
 
 
@@ -75,6 +76,7 @@ public class SearchPublicFlashcards extends AppCompatActivity {
                     adapter = new FlashCardSetAdapter(getApplicationContext(), arFlashCardsSet);
                     //   Log.d("score", "Retriiiiiieved " + scoreList.size() + " scores");
                     listView.setAdapter(adapter);
+                    //Log.e("This is my Object ID: ",arFlashCardsSet.get(10).toString());
                     listView.setTextFilterEnabled(true);
 
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -130,12 +132,26 @@ public class SearchPublicFlashcards extends AppCompatActivity {
 
                         @Override
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                             adapter.getFilter().filter(s.toString());
+                            //adapter.getFilter().
 
                         }
 
                         @Override
                         public void afterTextChanged(Editable s) {
+
+//                            ParseQuery<ParseObject> query = ParseQuery.getQuery("SetFC");
+//                            query.whereEqualTo("Public", Boolean.TRUE);
+//                            query.whereContains("Title", s.toString());
+//                            //query.whereContains("Subject",wordSearch);
+//                            query.addAscendingOrder("createAt");
+//                            query.findInBackground(new FindCallback<ParseObject>() {
+//                                @Override
+//                                public void done(List<ParseObject> list, ParseException e) {
+//                                    adapter.getFilter().filter(s.toString());
+//                                }
+//                            });
 
                         }
                     });
@@ -170,7 +186,8 @@ public class SearchPublicFlashcards extends AppCompatActivity {
         for (int i = 0; i <= size; i++) {
             final int a = i;
             if (fcList.get(i).get("picture") == null) {
-                FlashCard co = new FlashCard(fcList.get(i).get("term").toString(), fcList.get(i).get("description").toString());
+                FlashCard co = new FlashCard(fcList.get(i).get("term").toString(), fcList.get(i).get("description").toString(),fcList.get(i).getObjectId().toString());
+                Log.d("MY KEY",fcList.get(i).getObjectId().toString());
                 result.add(co);
                 Log.d("Hola", "It went here Sorry");
             } else {
@@ -180,12 +197,26 @@ public class SearchPublicFlashcards extends AppCompatActivity {
                 byte[] bitmapdata = image.getData();
                 //loadBytes(image,imageView);
                 Bitmap bmp = BitmapFactory.decodeByteArray(bitmapdata,0,bitmapdata.length);
-                FlashCard co = new FlashCard(fcList.get(a).get("term").toString(), fcList.get(a).get("description").toString(), bmp);
+                FlashCard co = new FlashCard(fcList.get(a).get("term").toString(), fcList.get(a).get("description").toString(), bmp,fcList.get(i).getObjectId().toString());
                 result.add(co);
 
             }
         }
         return result;
+    }
+
+    public ArrayList<FlashCardsSet> searchMe(CharSequence s){
+
+        ArrayList<FlashCardsSet> arFCS;
+
+        arFCS = arFlashCardsSet;
+
+        for(int i = 0;i<arFCS.size();i++){
+
+
+        }
+
+        return arFlashCardsSet;
     }
 
 

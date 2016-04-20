@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.parse.ParseException;
@@ -17,7 +17,7 @@ import com.parse.SignUpCallback;
  */
 public class RegisterCredentials extends Activity {
 
-    Button registerButton;
+    ImageButton registerButton;
     EditText nameText;
     EditText emailText;
     EditText usernameText;
@@ -38,7 +38,7 @@ public class RegisterCredentials extends Activity {
         emailText = (EditText) findViewById(R.id.registerEmailEditText);
         usernameText = (EditText) findViewById(R.id.registerUsernameEditText);
         passwordText = (EditText) findViewById(R.id.registerPasswordEditText);
-        registerButton = (Button) findViewById(R.id.registerRegisterButton);
+        registerButton = (ImageButton) findViewById(R.id.registerRegisterButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

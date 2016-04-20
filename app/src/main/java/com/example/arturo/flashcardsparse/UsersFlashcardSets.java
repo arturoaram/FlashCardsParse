@@ -53,6 +53,7 @@ public class UsersFlashcardSets extends AppCompatActivity {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("SetFC");
         query.whereEqualTo("Parent", user.getCurrentUser());
+        query.addDescendingOrder("createdAt");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> scoreList, ParseException e) {
                 if (e == null) {
@@ -82,6 +83,7 @@ public class UsersFlashcardSets extends AppCompatActivity {
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("FlashCard");
                 query.whereEqualTo("Parent", fcSetParse);
+                query.addAscendingOrder("createdAt");
                 query.findInBackground(new FindCallback<ParseObject>() {
                     public void done(List<ParseObject> FlashCardsList, ParseException e) {
                         if (e == null) {

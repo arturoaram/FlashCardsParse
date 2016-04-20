@@ -23,7 +23,8 @@ public class StudyCardsActivity extends AppCompatActivity {
     List<FlashCard> FCList;
     ArrayList<FlashCardsSet> arFlashCardsSet;
     int index;
-    int increaseNum=0;
+    int increaseNum=0,IncreaseNum2=0;
+
     Button correct,incorrect;
     Chronometer chronometer;
     @Override
@@ -111,8 +112,8 @@ public class StudyCardsActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            increaseNum++;
-            correct.setText(""+Integer.toString(increaseNum));
+            IncreaseNum2++;
+            correct.setText(""+Integer.toString(IncreaseNum2));
         }
 
         @Override
