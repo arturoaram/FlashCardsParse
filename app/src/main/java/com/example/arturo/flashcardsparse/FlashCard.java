@@ -18,6 +18,7 @@ public class FlashCard implements Serializable{
     protected String definition;
     protected ImageView img;
     protected Bitmap bp;
+    private String KEY;
 
     protected static final String TERM_PREFIX = "Term_";
     protected static final String DEFINITION_PREFIX = "Definition_";
@@ -36,6 +37,24 @@ public class FlashCard implements Serializable{
     public FlashCard(String n, String d) {
         term = n;
         definition = d;
+    }
+
+    public FlashCard(String n, String d, Bitmap i, String k) {
+        term = n;
+        definition = d;
+        bp = i;
+        KEY = k;
+    }
+
+    public void setBp(Bitmap bp) {
+        this.bp = bp;
+    }
+
+    public FlashCard(String n, String d, String k) {
+        term = n;
+        definition = d;
+        KEY = k;
+        bp=null;
     }
 
     public void setTerm(String term) {
@@ -60,6 +79,14 @@ public class FlashCard implements Serializable{
 
     public ImageView getImg() {
         return img;
+    }
+
+    public Bitmap getBp() {
+        return bp;
+    }
+
+    public String getKEY() {
+        return KEY;
     }
 
     public void addBitmap(ParseObject PO) {

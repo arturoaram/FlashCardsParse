@@ -45,4 +45,5 @@
         <item> Winston-Salem State University</item>
         <item> No School</item>
     </string-array>
+    <string name="title_activity_image_display">imageDisplayActivity</string>
 </resources>

@@ -24,14 +24,14 @@
         android:layout_marginLeft="10dp">
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:text="@string/Term"
             android:layout_height="wrap_content"
             android:id="@+id/termCard"
-            android:layout_marginTop="113dp"
             android:gravity="center"
+            android:layout_marginTop="113dp"
+            android:layout_marginLeft="125dp"
             android:layout_alignTop="@+id/cardsview"
-            android:layout_centerHorizontal="true"
             android:textColor="#ff0000"
             android:textStyle="bold|italic" />
     </android.support.v7.widget.CardView>

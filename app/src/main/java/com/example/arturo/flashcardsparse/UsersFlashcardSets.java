@@ -217,7 +217,8 @@ public class UsersFlashcardSets extends AppCompatActivity {
         for (int i = 0; i <= size; i++) {
             final int a = i;
             if (fcList.get(i).get("picture") == null) {
-                FlashCard co = new FlashCard(fcList.get(i).get("term").toString(), fcList.get(i).get("description").toString());
+                FlashCard co = new FlashCard(fcList.get(i).get("term").toString(), fcList.get(i).get("description").toString(),fcList.get(i).getObjectId().toString());
+                Log.d("MY KEY",fcList.get(i).getObjectId().toString());
                 result.add(co);
                 Log.d("Hola", "It went here Sorry");
             } else {
@@ -227,7 +228,7 @@ public class UsersFlashcardSets extends AppCompatActivity {
                 byte[] bitmapdata = image.getData();
                 //loadBytes(image,imageView);
                 Bitmap bmp = BitmapFactory.decodeByteArray(bitmapdata,0,bitmapdata.length);
-                FlashCard co = new FlashCard(fcList.get(a).get("term").toString(), fcList.get(a).get("description").toString(), bmp);
+                FlashCard co = new FlashCard(fcList.get(a).get("term").toString(), fcList.get(a).get("description").toString(), bmp,fcList.get(i).getObjectId().toString());
                 result.add(co);
 
             }

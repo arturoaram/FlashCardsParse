@@ -27,8 +27,8 @@
         android:layout_below="@+id/editText" />
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/imageView"
 
         android:onClick="ADD PICTURE"
@@ -39,8 +39,10 @@
         android:layout_toLeftOf="@+id/button"
         android:layout_toStartOf="@+id/button"
         android:layout_above="@+id/startCamera"
-        android:background="#f0a5a5"
-        android:src="#ffffff" />
+        android:src="#ffffff"
+        android:baselineAlignBottom="false"
+        android:clickable="false"
+        android:textAlignment="center" />
 
     <ImageButton
         android:layout_width="wrap_content"

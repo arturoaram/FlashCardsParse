@@ -257,13 +257,7 @@ public class CreateFlashcards extends AppCompatActivity {
 
                 }
             });
-
-
-
-
             query.clearCachedResult();
-            //query.clearCachedResult();
-
 
         } else if(!isEmpty(term) && !isEmpty(definition)){
 
@@ -294,16 +288,7 @@ public class CreateFlashcards extends AppCompatActivity {
                     definition.getText().clear();
                 }
             });
-            //query.clearCachedResult();
-
-            //flashCard.add(parseObject);
-            //clears the term and definition for next
-
-            //imageView.setImageBitmap(null);
-            //bitmap=null;
-            //bitmap.recycle();
-
-
+            query.clearCachedResult();
         }
         else {
             Toast toast = Toast.makeText(getApplicationContext(),

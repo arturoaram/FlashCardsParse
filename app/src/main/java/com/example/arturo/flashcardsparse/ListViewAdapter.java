@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,11 +73,24 @@ private Context context;
 
             Log.e("where are you going?", "not here");
             Toast.makeText(context,"The Item Clicked is: "+getPosition(),Toast.LENGTH_SHORT).show();
-       Intent i = new Intent(context, StudyCardsActivity.class);
-            i.putExtra("list", (Serializable) cardListt);
+            Intent i = new Intent(context, StudyCardsActivity.class);
+            i.putExtra("list", (Serializable) removeBitmaps(cardListt));
             i.putExtra("index",getPosition());
 
-          context.startActivity(i);
+            context.startActivity(i);
         }
+    }
+
+    public List<FlashCard> removeBitmaps(List<FlashCard> lFC){
+        List<FlashCard> noBitmaps=new ArrayList<FlashCard>();
+        FlashCard test;
+
+        for(int i=0; i<lFC.size();i++){
+            test = lFC.get(i);
+            test.setBp(null);
+            noBitmaps.add(test);
+
+        }
+        return noBitmaps;
     }
 }

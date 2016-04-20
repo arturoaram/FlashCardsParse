@@ -2,15 +2,10 @@ package com.example.arturo.flashcardsparse;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Display;
-import android.view.Surface;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Toast;
@@ -36,14 +31,24 @@ public class StudyCardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cardviewpager);
 
+        Bundle bundle = getIntent().getExtras();
+        FCList = (List<FlashCard>)bundle.getSerializable("list");
+        index = bundle.getInt("index");
+
+        FCardAdapter adapter = new FCardAdapter(getFragmentManager());
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager.setAdapter(adapter);
+
         ButtonAction testListener=new ButtonAction();
-    ButtonAction2   testListener2=new ButtonAction2();
+        ButtonAction2 testListener2=new ButtonAction2();
+
         correct=(Button)findViewById(R.id.correctbtn);
         correct.setOnClickListener(testListener);
         correct.setOnFocusChangeListener(testListener);
 
         incorrect=(Button)findViewById(R.id.incorrectbtn);
         incorrect.setOnClickListener(testListener2);
+
         chronometer=(Chronometer)findViewById(R.id.chronometer);
         chronometer.start();
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
@@ -60,23 +65,7 @@ public class StudyCardsActivity extends AppCompatActivity {
            }
        });
 
-
-
-
-        Bundle bundle = getIntent().getExtras();
-        FCList = (List<FlashCard>)bundle.getSerializable("list");
-        index = bundle.getInt("index");
-
-
-        FCardAdapter adapter = new FCardAdapter(getFragmentManager());
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        viewPager.setAdapter(adapter);
-
-
     }
-
-
-
 
     public   class FCardAdapter extends android.support.v13.app.FragmentPagerAdapter{
 
@@ -93,12 +82,6 @@ public class StudyCardsActivity extends AppCompatActivity {
             return FCList.size();
         }
     }
-
-
-
-
-
-
 
     public class ButtonAction2 implements Button.OnClickListener,Button.OnFocusChangeListener{
 
@@ -122,8 +105,6 @@ public class StudyCardsActivity extends AppCompatActivity {
             }
         }
     }
-
-
 
     public class ButtonAction implements Button.OnClickListener,Button.OnFocusChangeListener{
 

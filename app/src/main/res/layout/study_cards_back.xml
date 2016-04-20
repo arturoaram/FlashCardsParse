@@ -29,15 +29,25 @@
             android:text="@string/Definition"
             android:layout_height="wrap_content"
             android:id="@+id/definitionCard"
-            android:layout_alignTop="@+id/cardsview"
+            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="102dp"
-            android:gravity="center_horizontal"
-            android:layout_marginLeft="150dp"/>
+            android:layout_alignTop="@+id/cardsview2"
+            android:layout_marginTop="113dp"
+             />
 
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/definitionCard"
+            android:id="@+id/optionalImageView"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/camera"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="115dp"
+            />
 
     </android.support.v7.widget.CardView>
+
 
 
 
