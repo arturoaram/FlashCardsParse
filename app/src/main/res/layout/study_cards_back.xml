@@ -25,15 +25,19 @@
         android:layout_marginLeft="10dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:text="@string/Definition"
             android:layout_height="wrap_content"
             android:id="@+id/definitionCard"
             android:gravity="center"
             android:layout_centerHorizontal="true"
             android:layout_alignTop="@+id/cardsview2"
-            android:layout_marginTop="113dp"
-             />
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="50dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            />
 
         <ImageView
             android:layout_width="wrap_content"

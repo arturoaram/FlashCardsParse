@@ -16,8 +16,8 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="85dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:id="@+id/correctbtn"
         android:layout_marginRight="01dp"
 
@@ -27,8 +27,8 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:text="@string/Incorrect"
         android:id="@+id/incorrectbtn"
         android:layout_marginLeft="0dp"

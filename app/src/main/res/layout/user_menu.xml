@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <Button
+    android:layout_height="match_parent"
+    android:background="#16607f">
+
+    <ImageButton
         android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:text="@string/Create_Flashcards"
         android:id="@+id/createFlashcardsBtn"
-        android:layout_marginTop="59dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:onClick="createFlashCards"
-        android:nestedScrollingEnabled="false" />
+        android:background="@drawable/createfc"
+        android:nestedScrollingEnabled="false"
+        android:layout_above="@+id/startStudyingBtn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
-    <Button
+    <ImageButton
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:text="@string/Start_Studying"
         android:id="@+id/startStudyingBtn"
+        android:background="@drawable/startstudying"
         android:layout_above="@+id/searchPublicFlashcardsBtn"
         android:layout_alignLeft="@+id/searchPublicFlashcardsBtn"
         android:layout_alignStart="@+id/searchPublicFlashcardsBtn"
@@ -26,28 +30,55 @@
         android:layout_alignEnd="@+id/searchPublicFlashcardsBtn"
         android:onClick="ViewFlashCards" />
 
-    <Button
+    <ImageButton
         android:layout_width="75dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:text="@string/Search_Public_Flashcards"
         android:onClick="searchPublicFC"
         android:id="@+id/searchPublicFlashcardsBtn"
+        android:background="@drawable/searchpc"
         android:layout_above="@+id/matchingGameBtn"
         android:layout_alignLeft="@+id/matchingGameBtn"
         android:layout_alignStart="@+id/matchingGameBtn"
         android:layout_alignRight="@+id/createFlashcardsBtn"
         android:layout_alignEnd="@+id/createFlashcardsBtn" />
 
-    <Button
+    <ImageButton
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:text="@string/Matching_Game"
         android:id="@+id/matchingGameBtn"
-        android:layout_marginBottom="82dp"
+        android:layout_marginBottom="0dp"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/matchgm"
         android:layout_alignLeft="@+id/createFlashcardsBtn"
         android:layout_alignStart="@+id/createFlashcardsBtn"
         android:layout_alignRight="@+id/createFlashcardsBtn"
-        android:layout_alignEnd="@+id/createFlashcardsBtn" />
+        android:layout_alignEnd="@+id/createFlashcardsBtn"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:id="@+id/imageView3"
+        android:background="@drawable/profile_pic"
+        android:layout_above="@+id/createFlashcardsBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="User"
+        android:id="@+id/userNameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:textColor="#ffffff"
+        android:textSize="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textStyle="bold"
+        android:textAlignment="center" />
 
 </RelativeLayout>

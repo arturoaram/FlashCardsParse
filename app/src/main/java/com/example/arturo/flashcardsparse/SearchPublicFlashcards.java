@@ -49,7 +49,7 @@ public class SearchPublicFlashcards extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_public_flashcards);
 
-        setTitle("Display and Filter your FlashCards");
+        setTitle("Public Flashcard Sets");
         listView = (ListView) findViewById(R.id.listView2);
 
 

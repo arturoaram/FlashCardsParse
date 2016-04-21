@@ -6,14 +6,16 @@
 <RelativeLayout
     android:id="@+id/Register"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
+    android:layout_height="260dp"
     android:orientation="vertical"
     android:weightSum="1"
     android:layout_gravity="center_horizontal|bottom"
     android:layout_alignParentBottom="true"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
-    android:background="#1d80a9">
+    android:background="#1d80a9"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -65,7 +67,8 @@
         android:background="#ffffff"
         android:layout_above="@+id/registerUsernameEditText"
         android:layout_alignStart="@+id/registerUsernameEditText"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="-5dp" />
 
     <ImageButton
         android:layout_width="200dp"
@@ -74,7 +77,8 @@
         android:id="@+id/registerRegisterButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/register" />
+        android:background="@drawable/register"
+        android:layout_marginBottom="8dp" />
 </RelativeLayout>
 
 </RelativeLayout>

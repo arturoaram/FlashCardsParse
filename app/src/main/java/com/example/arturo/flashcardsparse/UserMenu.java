@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -18,6 +19,7 @@ import com.parse.ParseUser;
 public class UserMenu extends AppCompatActivity {
 
     String UN, PW, UsernameName;
+    TextView tv;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -32,8 +34,9 @@ public class UserMenu extends AppCompatActivity {
         ParseUser user = ParseUser.getCurrentUser();
 
         UsernameName = user.get("Name").toString();
-
-        setTitle("Welcome: " + UsernameName);
+        tv = (TextView) findViewById(R.id.userNameTextView);
+        setTitle("Welcome ");
+        tv.setText(UsernameName);
         // Signup failed. Look at the ParseException to see what happened.
 
 
