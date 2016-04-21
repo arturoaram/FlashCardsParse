@@ -62,6 +62,7 @@ public class CreateFlashcards extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_flashcards);
+        setTitle("Create FlashCards");
 
         id = getIntent().getStringExtra("ID");
 
