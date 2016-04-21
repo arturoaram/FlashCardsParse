@@ -64,7 +64,7 @@ public class UsersFlashcardSets extends AppCompatActivity {
                     arFlashCardsSet.addAll(parseObjectToFlashCardSetConverter(scoreList));
                     adapter = new FlashCardSetAdapter(getApplicationContext(), arFlashCardsSet);
                     listview.setAdapter(adapter);
-
+                //    listview.setTextFilterEnabled(true);
                 } else {
                     Log.d("score", "Error: " + e.getMessage());
                 }
